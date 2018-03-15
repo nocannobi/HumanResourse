@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CustomerDao">
+    <resultMap id="customerMap" type="Customer">
+        <id column="id" property="id"></id>
+        <result column="customer_name" property="customerName"></result>
+        <result column="customer_password" property="customerPassword"></result>
+        <result column="customer_age" property="customerAge"></result>
+        <result column="customer_email" property="customerEmail"></result>
+        <result column="customer_phone" property="customerPhone"></result>
+        <result column="customer_login_time" property="customerLoginTime"></result>
+        <result column="customer_create_time" property="customerCreateTime"></result>
+        <result column="customer_modified_time" property="customerModifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectCustomer">
+        SELECT  * FROM CUSTOMER
+    </sql>
+
+    <select id="queryCustomerByName" parameterType="Customer" resultMap="customerMap">
+        <include refid="selectCustomer"></include>
+        <where>
+            <choose>
+                <when test="customerName != null AND customerPassword != null">
+                   AND customer_name = #{customerName}
+                    AND customer_password = #{customerPassword}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryCustomerById" parameterType="Customer" resultMap="customerMap">
+        <include refid="selectCustomer"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                   AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <insert id="addCustomer" parameterType="Customer">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="customerName != null">
+                customer_name,
+            </if>
+            <if test="customerPassword != null">
+                customer_password,
+            </if>
+            <if test="customerEmail != null">
+                customer_email,
+            </if>
+            <if test="customerPhone != null">
+                customer_phone,
+            </if>
+            <if test="customerIsNormal != null">
+                customer_is_normal,
+            </if>
+            <if test="customerLoginTime != null">
+                customer_login_time,
+            </if>
+            <if test="customerCreateTime != null">
+                customer_create_time,
+            </if>
+            <if test="customerModifiedTime != null">
+                customer_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="customerName != null">
+                #{customerName},
+            </if>
+            <if test="customerPassword != null">
+                #{customerPassword},
+            </if>
+            <if test="customerEmail != null">
+                #{customerEmail},
+            </if>
+            <if test="customerPhone != null">
+                #{customerPhone},
+            </if>
+            <if test="customerIsNormal != null">
+                #{customerIsNormal},
+            </if>
+            <if test="customerLoginTime != null">
+                #{customerLoginTime},
+            </if>
+            <if test="customerCreateTime != null">
+                #{customerCreateTime},
+            </if>
+            <if test="customerModifiedTime != null">
+                #{customerModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <!--查询所有用户-->
+    <select id="queryAllCustomer" resultMap="customerMap">
+        <include refid="selectCustomer"></include>
+    </select>
+
+    <!--更改用户-->
+    <update id="updateCustomer" parameterType="Customer">
+        UPDATE customer
+        <set>
+            <if test="customerName != null">
+               customer_name = #{customerName} ,
+            </if>
+            <if test="customerPassword != null">
+                customer_password = #{customerPassword},
+            </if>
+            <if test="customerEmail != null">
+                customer_email = #{customerEmail},
+            </if>
+            <if test="customerPhone != null">
+                customer_phone = #{customerPhone},
+            </if>
+            <if test="customerIsNormal != null">
+                customer_is_normal = #{customerIsNormal},
+            </if>
+            <if test="customerLoginTime != null">
+                customer_login_time = #{customerLoginTime},
+            </if>
+            <if test="customerCreateTime != null">
+                customer_create_time = #{customerCreateTime},
+            </if>
+            <if test="customerModifiedTime != null">
+                customer_modified_time =　#{customerModifiedTime},
+            </if>
+        </set>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                   AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
+    <!--删除用户-->
+    <delete id="deleteCustomer" parameterType="Customer">
+        UPDATE customer SET CUSTOMER_IS_NORMAL = #{customerIsNormal} WHERE ID = #{id}
+    </delete>
+
+
+
+
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.EmployeeDao">
+    <resultMap id="employeeMap" type="Employee">
+        <id column="id" property="id"></id>
+        <result column="job_id" property="jobId"></result>
+        <result column="employee_detail_id" property="employeeDetailId"></result>
+        <result column="employee_name" property="employeeName"></result>
+        <result column="employee_password" property="employeePassword"></result>
+        <result column="basic_wage" property="basicWage"></result>
+        <result column="employee_is_work" property="employeeIsWork"></result>
+        <result column="job_state" property="jobState"></result>
+        <result column="employee_is_retired" property="employeeIsRetired"></result>
+        <result column="employee_login_time" property="employeeLoginTime"></result>
+        <result column="employee_create_time" property="employeeCreateTime"></result>
+        <result column="employee_modified_time" property="employeeModifiedTime"></result>
+
+    </resultMap>
+    <sql id="selectEmployee">
+        SELECT * FROM employee
+    </sql>
+    <select id=""></select>
+
+    <insert id="addEmployee" parameterType="Employee">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+      INSERT INTO employee
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="jobId != null">
+                job_id,
+            </if>
+            <if test="employeeDetailId != null">
+                employee_detail_id,
+            </if>
+            <if test="employeeName != null">
+                employee_name,
+            </if>
+            <if test="employeePassword != null">
+                employee_password,
+            </if>
+            <if test="basicWage != null">
+                basic_wage,
+            </if>
+            <if test="employeeIsWork != null">
+                employee_is_work,
+            </if>
+            <if test="jobState != null">
+                job_state,
+            </if>
+            <if test="employeeIsRetired != null">
+                employee_is_retired,
+            </if>
+            <if test="employeeLoginTime != null">
+                employee_login_time,
+            </if>
+            <if test="employeeCreateTime != null">
+                employee_create_time,
+            </if>
+            <if test="employeeModifiedTime != null">
+                employee_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="jobId != null">
+                #{jobId},
+            </if>
+            <if test="employeeDetailId != null">
+                #{employeeDetailId},
+            </if>
+            <if test="employeeName != null">
+                #{employeeName},
+            </if>
+            <if test="employeePassword != null">
+                #{employeePassword},
+            </if>
+            <if test="basicWage != null">
+                #{basicWage},
+            </if>
+            <if test="employeeIsWork != null">
+                #{employeeIsWork},
+            </if>
+            <if test="jobState != null">
+                #{jobState},
+            </if>
+            <if test="employeeIsRetired != null">
+                #{employeeIsRetired},
+            </if>
+            <if test="employeeLoginTime != null">
+                #{employeeLoginTime},
+            </if>
+            <if test="employeeCreateTime != null">
+                #{employeeCreateTime},
+            </if>
+            <if test="employeeModifiedTime != null">
+                #{employeeModifiedTime},
+            </if>
+        </trim>
+    </insert>
+</mapper>
