@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ResumeDao">
+    <resultMap id="resumeMap" type="Resume">
+        <id column="id" property="id"></id>
+        <result column="customer_id" property="customerId"></result>
+        <result column="real_name" property="realName"></result>
+        <result column="sex" property="sex"></result>
+        <result column="birth" property="birth"></result>
+        <result column="nation" property="nation"></result>
+        <result column="phone" property="phone"></result>
+        <result column="email" property="email"></result>
+        <result column="graduation" property="graduation"></result>
+        <result column="education" property="education"></result>
+        <result column="personal_evaluation" property="personalEvaluation"></result>
+        <result column="work_experience" property="workExperience"></result>
+        <result column="resume_create_time" property="resumeCreateTime"></result>
+        <result column="resume_modified_time" property="resumeModifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectResume">
+        SELECT * FROM RESUME
+    </sql>
+
+    <select id="queryResumeById" parameterType="Resume" resultMap="resumeMap">
+        <include refid="selectResume"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                   AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryResumeByCid" parameterType="Customer" resultMap="resumeMap">
+        <include refid="selectResume"></include>
+        <where>
+            <choose>
+                <when test="customerId != null">
+                    AND customer_id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <insert id="addResume" parameterType="Resume">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="idCard != null">
+                id_card,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="birth != null">
+                birth,
+            </if>
+            <if test="nation != null">
+                nation,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email">
+                email,
+            </if>
+            <if test="graduation != null">
+                graduation,
+            </if>
+            <if test="education != null">
+                education,
+            </if>
+            <if test="personalEvaluation != null">
+                personal_evaluation,
+            </if>
+            <if test="work_experience != null">
+                work_experience,
+            </if>
+            <if test="resumeCreateTime != null">
+                resume_create_time,
+            </if>
+            <if test="resumeModifiedTime != null">
+                resume_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="customerId != null">
+               #{customerId},
+            </if>
+            <if test="realName != null">
+                #{realName},
+            </if>
+            <if test="idCard != null">
+                #{idCard},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="birth != null">
+                #{birth},
+            </if>
+            <if test="nation != null">
+                #{nation},
+            </if>
+            <if test="phone != null">
+                #{phone},
+            </if>
+            <if test="email">
+                #{email},
+            </if>
+            <if test="graduation != null">
+                #{graduation},
+            </if>
+            <if test="education != null">
+               #{education},
+            </if>
+            <if test="personalEvaluation != null">
+                #{personalEvaluation},
+            </if>
+            <if test="work_experience != null">
+                #{workExperience},
+            </if>
+            <if test="resumeCreateTime != null">
+                #{resumeCreateTime},
+            </if>
+            <if test="resumeModifiedTime != null">
+                #{resumeModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateResume" parameterType="Resume">
+        UPDATE RESUME
+        <set>
+            <if test="realName != null">
+               real_name = #{realName},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="birth != null">
+                birth = #{birth},
+            </if>
+            <if test="nation != null">
+                nation = #{nation},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="email">
+                email = #{email},
+            </if>
+            <if test="graduation != null">
+                graduation = #{graduation},
+            </if>
+            <if test="education != null">
+                education = #{education},
+            </if>
+            <if test="personalEvaluation != null">
+                personal_evaluation = #{personalEvaluation},
+            </if>
+            <if test="work_experience != null">
+                work_experience = #{workExperience},
+            </if>
+            <if test="resumeCreateTime != null">
+                resume_create_time = #{resumeCreateTime},
+            </if>
+            <if test="resumeModifiedTime != null">
+                resume_modified_time = #{resumeModifiedTime},
+            </if>
+        </set>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -12,21 +12,61 @@
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <script src="/scripts/jquery-3.0.0.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
+    <style>
+
+        .a{
+            color: white;
+        }
+
+        .container{
+            margin-top: 10%;
+            margin-left: 50%;
+        }
+
+        h3{
+            margin-left: 22%;
+        }
+
+        .div1{
+            float: left;
+        }
+    </style>
 </head>
 <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <form class="form-horizontal" action="/employee/employeeLogin.do" >
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">用户名:</label>
-                            <div class="col-sm-4">
-                                <input class="form-control">
-                            </div>
-                        </div>
-                    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form class="form-horizontal" action="/employee/employeeLogin.do">
+                <div class="form-group">
+                    <h3>员工登录</h3>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">用户名:</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" name="employeeName" >
+                    </div>
+                    <span id="checkEmployeeName"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">密&nbsp;&nbsp;码&nbsp;:</label>
+                    <div class="col-sm-4">
+                        <input class="form-control col-sm-4" type="password" name="employeePassword" >
+                    </div>
+                    <span id="checkEmployeePassword"></span>
+                </div>
+                <div class="form-group">
+                    <div class="div1  col-sm-offset-2">
+                        <button class="btn btn-primary">
+                            <a class="a" href="/employee/employeeRegister.view">注册</a>
+                        </button>
+                    </div>
+                    <div class="div1 col-sm-offset-1">
+                        <input class="btn btn-primary" type="submit" value="登录">
+                    </div>
+                </div>
+            </form>
         </div>
+    </div>
+</div>
 </body>
 </html>

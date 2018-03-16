@@ -10,13 +10,15 @@ public class Employee {
     public static final Integer JOB_INTERNSHIP = 0;
     public static final Integer EMPLOYEE_IS_RETIRED = 0;
     public static final Integer EMPLOYEE_IS_NOT_RETIRED = 1;
+    public static final Integer EMPLOYEE_IS_ADMIN = 1;
+    public static final Integer EMPLOYEE_IS_NOT_ADMIN = 0;
 
     private int id;
     private int jobId;
-    private int employeeDetailId;
     private String EmployeeName;
     private String EmployeePassword;
     private BigDecimal basicWage;
+    private Integer employeeIsAdmin;
     private Integer employeeIsWork;
     private Integer jobState;
     private Integer employeeIsRetired;
@@ -38,14 +40,6 @@ public class Employee {
 
     public void setJobId(int jobId) {
         this.jobId = jobId;
-    }
-
-    public int getEmployeeDetailId() {
-        return employeeDetailId;
-    }
-
-    public void setEmployeeDetailId(int employeeDetailId) {
-        this.employeeDetailId = employeeDetailId;
     }
 
     public String getEmployeeName() {
@@ -120,15 +114,23 @@ public class Employee {
         this.employeeModifiedTime = employeeModifiedTime;
     }
 
+    public Integer getEmployeeIsAdmin() {
+        return employeeIsAdmin;
+    }
+
+    public void setEmployeeIsAdmin(Integer employeeIsAdmin) {
+        this.employeeIsAdmin = employeeIsAdmin;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", jobId=" + jobId +
-                ", employeeDetailId=" + employeeDetailId +
                 ", EmployeeName='" + EmployeeName + '\'' +
                 ", EmployeePassword='" + EmployeePassword + '\'' +
                 ", basicWage=" + basicWage +
+                ", employeeIsAdmin=" + employeeIsAdmin +
                 ", employeeIsWork=" + employeeIsWork +
                 ", jobState=" + jobState +
                 ", employeeIsRetired=" + employeeIsRetired +

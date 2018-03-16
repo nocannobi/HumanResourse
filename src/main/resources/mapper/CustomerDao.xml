@@ -24,8 +24,7 @@
         <where>
             <choose>
                 <when test="customerName != null AND customerPassword != null">
-                   AND customer_name = #{customerName}
-                    AND customer_password = #{customerPassword}
+                   AND customer_name = #{customerName} AND customer_password = #{customerPassword}
                 </when>
                 <otherwise>
                     AND 1=2

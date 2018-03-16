@@ -27,6 +27,11 @@ public class CustomerController {
         return "customer/customerLogin";
     }
 
+    @RequestMapping(value = "/customerView.view")
+    public String viewPage(){
+        return "customer/customerView";
+    }
+
     @RequestMapping(value = "/customerLogin.do")
     public String customerLogin(@ModelAttribute Customer customer, HttpSession session , Model model){
         System.out.println("增加之前：" + customer);

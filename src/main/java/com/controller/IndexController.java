@@ -8,7 +8,7 @@ public class IndexController {
 
     @RequestMapping(value = "")
     public String indexPage(){
-     /*   return "/customer/customerLogin";*/
-     return "/customer/customerRegister";
+        return "/customer/customerLogin";
+   /*  return "/employee/employeeRegister";*/
     }
 }

@@ -6,7 +6,6 @@
     <resultMap id="employeeMap" type="Employee">
         <id column="id" property="id"></id>
         <result column="job_id" property="jobId"></result>
-        <result column="employee_detail_id" property="employeeDetailId"></result>
         <result column="employee_name" property="employeeName"></result>
         <result column="employee_password" property="employeePassword"></result>
         <result column="basic_wage" property="basicWage"></result>
@@ -21,7 +20,37 @@
     <sql id="selectEmployee">
         SELECT * FROM employee
     </sql>
-    <select id=""></select>
+    <select id="queryEmployeeByName" parameterType="Employee" resultMap="employeeMap">
+        <include refid="selectEmployee"></include>
+        <where>
+            <choose>
+                <when test="employeeName != null and employeePassword != null" >
+                    AND employee_name = #{employeeName} AND employee_password = #{employeePassword}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+
+    </select>
+    <select id="queryEmployeeById" parameterType="Employee" resultMap="employeeMap">
+        <include refid="selectEmployee"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                   AND id #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllEmployee" resultMap="employeeMap">
+        <include refid="selectEmployee"></include>
+    </select>
 
     <insert id="addEmployee" parameterType="Employee">
         <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
@@ -36,9 +65,6 @@
             <if test="jobId != null">
                 job_id,
             </if>
-            <if test="employeeDetailId != null">
-                employee_detail_id,
-            </if>
             <if test="employeeName != null">
                 employee_name,
             </if>
@@ -47,6 +73,9 @@
             </if>
             <if test="basicWage != null">
                 basic_wage,
+            </if>
+            <if test="employeeIsAdmin != null">
+                employee_is_admin,
             </if>
             <if test="employeeIsWork != null">
                 employee_is_work,
@@ -74,9 +103,6 @@
             <if test="jobId != null">
                 #{jobId},
             </if>
-            <if test="employeeDetailId != null">
-                #{employeeDetailId},
-            </if>
             <if test="employeeName != null">
                 #{employeeName},
             </if>
@@ -85,6 +111,9 @@
             </if>
             <if test="basicWage != null">
                 #{basicWage},
+            </if>
+            <if test="employeeIsAdmin != null">
+                #{employeeIsAdmin},
             </if>
             <if test="employeeIsWork != null">
                 #{employeeIsWork},
@@ -106,4 +135,68 @@
             </if>
         </trim>
     </insert>
+
+    <update id="updateEmployee" parameterType="Employee">
+        UPDATE employee
+        <set>
+            <if test="jobId != null">
+                job_id = #{jobId},
+            </if>
+            <if test="employeeName != null">
+                employee_name = #{employeeName},
+            </if>
+            <if test="employeePassword != null">
+                employee_password = #{employeePassword},
+            </if>
+            <if test="basicWage != null">
+                basic_wage = #{basicWage},
+            </if>
+            <if test="employeeIsAdmin != null">
+                employee_is_admin = #{employeeIsAdmin},
+            </if>
+            <if test="employeeIsWork != null">
+                employee_is_work = #{employeeIsWork},
+            </if>
+            <if test="jobState != null">
+               job_state =  #{jobState},
+            </if>
+            <if test="employeeIsRetired != null">
+                employee_is_retired = #{employeeIsRetired},
+            </if>
+            <if test="employeeLoginTime != null">
+                employee_login_time = #{employeeLoginTime},
+            </if>
+            <if test="employeeCreateTime != null">
+                employee_create_time = #{employeeCreateTime},
+            </if>
+            <if test="employeeModifiedTime != null">
+               employee_modified_time = #{employeeModifiedTime},
+            </if>
+        </set>
+        <where>
+            <choose>
+                <when test="id != null">
+                   AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
+    <delete id="deleteEmployee" parameterType="Employee">
+        UPDATE employee
+        SET EMPLOYEE_IS_ADMIN = #{employeeIsAdmin}
+        <where>
+            <choose>
+                <when test="id != null">
+                   AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
 </mapper>

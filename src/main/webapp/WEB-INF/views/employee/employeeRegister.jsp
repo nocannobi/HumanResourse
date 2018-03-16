@@ -9,12 +9,30 @@
 <html>
 <head>
     <title>员工注册</title>
+    <link href="/styles/bootstrap.min.css" rel="stylesheet">
+    <script src="/scripts/jquery-3.0.0.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <style>
+        .container{
+            margin-top: 5%;
+            margin-left: 10%;
+        }
+        .div1{
+            float: left;
+        }
+        a{
+            color: white;
+        }
+        h3{
+            margin-left: 20%;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form class="form-horizontal" action="/customer/customerRegister.do">
+            <form class="form-horizontal" action="/employee/employeeRegister.do">
                 <div class="form-group">
                     <h3>员工注册</h3>
                 </div>
@@ -38,7 +56,7 @@
                     </div>
                     <div class="div1 col-sm-offset-1">
                         <button class="btn btn-primary">
-                            <a href="/customer/customerLogin.view">返回</a>
+                            <a href="employee/employeeLogin.view">返回</a>
                         </button>
                     </div>
                 </div>
