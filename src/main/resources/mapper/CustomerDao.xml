@@ -23,7 +23,7 @@
         <include refid="selectCustomer"></include>
         <where>
             <choose>
-                <when test="customerName != null AND customerPassword != null">
+                <when test="customerName != null and customerPassword != null">
                    AND customer_name = #{customerName} AND customer_password = #{customerPassword}
                 </when>
                 <otherwise>

@@ -1,23 +1,24 @@
 package com.serviceImpl;
 
+import com.dao.EmployeeDetailDao;
 import com.po.Employee;
 import com.po.EmployeeDetail;
 import com.service.EmployeeDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service(value = "EmployeeDetail")
+@Service
 public class EmployeeDetailServiceImpl implements EmployeeDetailService {
 
     @Autowired
-    private EmployeeDetailService employeeDetailService;
+    private EmployeeDetailDao employeeDetailDao;
 
     @Override
     public boolean addEmployeeDetail(EmployeeDetail employeeDetail) {
         if(employeeDetail == null){
             return false;
         }
-        return employeeDetailService.addEmployeeDetail(employeeDetail);
+        return employeeDetailDao.addEmployeeDetail(employeeDetail);
     }
 
     @Override
@@ -25,7 +26,7 @@ public class EmployeeDetailServiceImpl implements EmployeeDetailService {
         if(employeeDetail == null){
             return false;
         }
-        return employeeDetailService.updateEmployeeDetail(employeeDetail);
+        return employeeDetailDao.updateEmployeeDetail(employeeDetail);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class EmployeeDetailServiceImpl implements EmployeeDetailService {
         if(employeeDetail == null){
            return null;
         }
-        return employeeDetailService.queryEmployeeDetailById(employeeDetail);
+        return employeeDetailDao.queryEmployeeDetailById(employeeDetail);
     }
 
     @Override
@@ -41,6 +42,6 @@ public class EmployeeDetailServiceImpl implements EmployeeDetailService {
         if(employee == null){
             return null;
         }
-        return employeeDetailService.queryEmployeeDetailByEid(employee);
+        return employeeDetailDao.queryEmployeeDetailByEid(employee);
     }
 }

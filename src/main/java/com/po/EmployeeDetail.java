@@ -2,7 +2,7 @@ package com.po;
 
 import java.sql.Timestamp;
 
-public class EmployeeDetail {
+public class EmployeeDetail extends BaseEntity{
     private int id;
     private int employeeId;
     private String employeeRealName;

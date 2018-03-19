@@ -2,7 +2,7 @@ package com.po;
 
 import java.sql.Timestamp;
 
-public class Resume {
+public class Resume extends BaseEntity{
     private int id;
     private int customerId;
     private String realName;

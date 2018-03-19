@@ -11,6 +11,7 @@ public interface EmployeeService {
     boolean updateEmployee(Employee employee);
     boolean deleteEmployee(Employee employee);
     Employee queryEmployeeByName(Employee employee);
+    Employee queryAdminByName(Employee employee);
     Employee queryEmployeeById(Employee employee);
     List<Employee> queryAllEmployee();
 

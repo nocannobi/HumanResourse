@@ -14,16 +14,31 @@
     <script src="/scripts/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/customer/customerView.view">用户首页</a>
-            </div>
-            <div>
-                <a class="navbar-text navbar-left" href="">职位搜索</a>
-                <a class="navbar-text navbar-right" href="/customer/customerLogin.view">退出</a>
-            </div>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/customer/customerView.view">首页</a>
         </div>
-    </nav>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">职位搜索</a></li>
+                <li><a href="#">SVN</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        个人中心
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">简历中心</a></li>
+                        <li><a href="#">我的收藏</a></li>
+                        <li><a href="#">我的申请</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/customer/customerLogin.view">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 </body>
 </html>

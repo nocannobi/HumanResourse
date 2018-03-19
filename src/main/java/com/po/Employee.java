@@ -3,7 +3,7 @@ package com.po;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class Employee {
+public class Employee extends BaseEntity{
     public static final Integer EMPLOYEE_IS_WORK = 1;
     public static final Integer EMPLOYEE_IS_NOT_WORK = 0;
     public static final Integer JOB_FULL_TIME = 1;

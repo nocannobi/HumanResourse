@@ -8,7 +8,11 @@ public class IndexController {
 
     @RequestMapping(value = "")
     public String indexPage(){
-        return "/customer/customerLogin";
+       /* return "/customer/resume";*/
+      /* return "/admin/adminView";*/
+      /* return "/admin/employee";*/
+       return "/admin/recruitment";
+      /* return "/admin/trainingRecord";*/
    /*  return "/employee/employeeRegister";*/
     }
 }

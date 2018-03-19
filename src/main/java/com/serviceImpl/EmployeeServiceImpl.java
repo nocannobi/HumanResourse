@@ -47,6 +47,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Employee queryAdminByName(Employee employee) {
+        if(employee == null){
+           return null;
+        }
+        return employeeDao.queryAdminByName(employee);
+    }
+
+    @Override
     public Employee queryEmployeeById(Employee employee) {
         if(employee == null){
           return null;

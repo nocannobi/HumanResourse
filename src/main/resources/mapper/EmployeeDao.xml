@@ -24,16 +24,30 @@
         <include refid="selectEmployee"></include>
         <where>
             <choose>
-                <when test="employeeName != null and employeePassword != null" >
-                    AND employee_name = #{employeeName} AND employee_password = #{employeePassword}
+                <when test="employeeName != null and employeePassword != null and employeeIsAdmin != null" >
+                    AND employee_name = #{employeeName} AND employee_password = #{employeePassword} AND employee_is_admin = 0
                 </when>
                 <otherwise>
                     AND 1=2
                 </otherwise>
             </choose>
         </where>
-
     </select>
+
+    <select id="queryAdminByName" parameterType="Employee" resultMap="employeeMap">
+        <include refid="selectEmployee"></include>
+        <where>
+            <choose>
+                <when test="employeeName != null and employeePassword != null and employeeIsAdmin != null" >
+                    AND employee_name = #{employeeName} AND employee_password = #{employeePassword} AND employee_is_admin = 1
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
     <select id="queryEmployeeById" parameterType="Employee" resultMap="employeeMap">
         <include refid="selectEmployee"></include>
         <where>
