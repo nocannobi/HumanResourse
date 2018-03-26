@@ -13,6 +13,7 @@
     <script src="/scripts/jquery-3.0.0.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
     <script src="/scripts/address.js"></script>
+
     <style>
         .container{
             margin-top: 10%;
@@ -24,10 +25,14 @@
     </style>
 </head>
 <body>
+
     <div class="container">
         <div class="row">
             <div class="col-md-11">
-                <form class="form-horizontal" action="/customer/resume.do">
+                <form class="form-horizontal" method="post" action="/customer/resume.do" >
+                    <div class="form-group">
+                        <input type="hidden" value="${sessionScope.customer.id}" name="customerId">
+                    </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">姓&nbsp;&nbsp;名：</label>
                         <div class="col-sm-4">
@@ -38,6 +43,12 @@
                         <label class="control-label col-sm-2">身份证号：</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" name="idCard">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">民&nbsp;&nbsp;族：</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="nation">
                         </div>
                     </div>
                     <div class="form-group">
@@ -58,9 +69,9 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">详细地址：</label>
-                        <select id="province" runat="server"name="province"></select>
+                        <select id="province" runat="server" name="province"></select>
                         <label class="control-label">省，直辖市</label>
-                        <select id="city" runat="server"name="city"></select>
+                        <select id="city" runat="server" name="city"></select>
                         <label class="control-label">市</label>
                         <select id="country" runat="server" name="country"></select>
                         <label class="control-label">乡，县</label>
@@ -112,11 +123,11 @@
                     </div>
                     <div class="form-group">
                         <div class="div1 col-sm-3 col-sm-offset-2">
-                            <input class="btn btn-primary" type="submit" value="确认提交">
+                            <input class="btn btn-primary" type="submit" value="确认提交" onblur="addCustomerId()">
                         </div>
                         <div class="div1 col-sm-3 col-sm-offset-2">
                         <button type="submit" class="btn btn-primary">
-                            <a href="/customer/customerView.view">返回</a>
+                            <a href="/customer/customerView2.view">返回</a>
                         </button>
                         </div>
                     </div>

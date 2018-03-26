@@ -36,7 +36,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form class="form-horizontal" action="/employee/employeeLogin.do">
+            <form class="form-horizontal" method="post" action="/employee/employeeLogin.do">
                 <div class="form-group">
                     <h3>员工登录</h3>
                 </div>

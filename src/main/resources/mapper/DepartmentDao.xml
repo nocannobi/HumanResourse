@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DepartmentDao">
+    <resultMap id="departmentMap" type="Department">
+        <id column="id" property="id"></id>
+        <result column="department_name" property="departmentName"></result>
+        <result column="department_is_delete" property="departmentIsDelete"></result>
+        <result column="department_create_time" property="departmentCreateTime"></result>
+        <result column="department_modified_time" property="departmentModifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectDepartment">
+        SELECT * FROM DEPARTMENT
+    </sql>
+
+    <insert id="addDepartment" parameterType="Department">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+         </selectKey>
+
+        INSERT INTO department
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="departmentName != null">
+                department_name,
+            </if>
+            <if test="departmentIsDelete != null">
+                department_is_delete,
+            </if>
+            <if test="departmentCreateTime != null">
+                department_create_time,
+            </if>
+            <if test="departmentModifiedTime != null">
+                department_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="departmentName != null">
+                #{departmentName},
+            </if>
+            <if test="departmentIsDelete != null">
+                #{departmentIsDelete},
+            </if>
+            <if test="departmentCreateTime != null">
+                #{departmentCreateTime},
+            </if>
+            <if test="departmentModifiedTime != null">
+                #{departmentModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateDepartment" parameterType="Department">
+        UPDATE DEPARTMENT
+        <trim prefix="set" suffixOverrides=",">
+            <if test="departmentName != null">
+                department_name = #{departmentName},
+            </if>
+            <if test="departmentIsDelete != null">
+                department_is_delete = #{departmentIsDelete},
+            </if>
+            <if test="departmentCreateTime != null">
+                department_create_time = #{departmentCreateTime},
+            </if>
+            <if test="departmentModifiedTime != null">
+                department_modified_time = #{departmentModifiedTime},
+            </if>
+        </trim>
+    </update>
+
+    <delete id="deleteDepartment" parameterType="Department">
+        UPDATE DEPARTMENT set DEPARTMENT_IS_DELETE = 1
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="queryDepartmentById" parameterType="Department" resultMap="departmentMap">
+        <include refid="selectDepartment"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+
+ <select id="queryDepartmentByName"  resultMap="departmentMap">
+        <include refid="selectDepartment"></include>
+        <where>
+            <choose>
+                <when test="value != null">
+                    AND department_name = #{value}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllDepartment" resultMap="departmentMap">
+        <include refid="selectDepartment"></include>
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -9,7 +9,9 @@ public interface EmployeeDao {
     boolean updateEmployee(Employee employee);
     boolean deleteEmployee(Employee employee);
     Employee queryEmployeeByName(Employee employee);
+    Employee queryEmployeeByEmployee(Employee employee);
     Employee queryAdminByName(Employee employee);
     Employee queryEmployeeById(Employee employee);
+    List<Employee> queryAllEmployeeByDetail();
     List<Employee> queryAllEmployee();
 }

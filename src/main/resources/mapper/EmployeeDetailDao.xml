@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.EmployeeDetailDao">
+       <resultMap id="employeeDetailMap" type="EmployeeDetail">
+            <id column="id" property="id"></id>
+            <result column="employee_id" property="employeeId"></result>
+            <result column="employee_real_name" property="employeeRealName"></result>
+            <result column="head_image" property="headImage"></result>
+            <result column="employee_age" property="employeeAge"></result>
+            <result column="employee_sex" property="employeeSex"></result>
+            <result column="employee_id_card" property="employeeIdCard"></result>
+            <result column="employee_email" property="employeeEmail"></result>
+            <result column="employee_phone" property="employeePhone"></result>
+            <result column="employee_address" property="employeeAddress"></result>
+            <result column="employee_department" property="employeeDepartment"></result>
+            <result column="employee_job" property="employeeJob"></result>
+            <result column="employee_detail_create_time" property="employeeDetailCreateTime"></result>
+            <result column="employee_detail_modified_time" property="employeeDetailModifiedTime"></result>
+       </resultMap>
+
+        <sql id="selectEmployeeDetail">
+            SELECT * FROM EMPLOYEE_DETAIL
+        </sql>
+
+        <insert id="addEmployeeDetail" parameterType="EmployeeDetail">
+            <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+                SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+            </selectKey>
+
+            INSERT INTO employee_detail
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    id,
+                </if>
+                <if test="employeeId != null">
+                    employee_id,
+                </if>
+                <if test="employeeRealName != null">
+                    employee_real_name,
+                </if>
+                <if test="headImage != null">
+                    head_image,
+                </if>
+                <if test="employeeAge != null">
+                    employee_age,
+                </if>
+                <if test="employeeSex != null">
+                    employee_sex,
+                </if>
+                <if test="employeeIdCard != null">
+                    employee_id_card,
+                </if>
+                <if test="employeeEmail != null">
+                    employee_email,
+                </if>
+                <if test="employeePhone != null">
+                    employee_phone,
+                </if>
+                <if test="employeeAddress != null">
+                    employee_address,
+                </if>
+                <if test="employeeDepartment != null">
+                    employee_department,
+                </if>
+                <if test="employeeJob != null">
+                    employee_job,
+                </if>
+                <if test="employeeDetailCreateTime != null">
+                    employeeDetail_create_time,
+                </if>
+                <if test="employeeDetailModifiedTime != null">
+                    employeeDetil_modified_time,
+                </if>
+            </trim>
+            <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id},
+                </if>
+                <if test="employeeId != null">
+                    #{employeeId},
+                </if>
+                <if test="employeeRealName != null">
+                    #{employeeRealName},
+                </if>
+                <if test="headImage != null">
+                    #{headImage},
+                </if>
+                <if test="employeeAge != null">
+                    #{employeeAge},
+                </if>
+                <if test="employeeSex != null">
+                    #{employeeSex},
+                </if>
+                <if test="employeeIdCard != null">
+                    #{employeeIdCard},
+                </if>
+                <if test="employeeEmail != null">
+                    #{employeeEmail},
+                </if>
+                <if test="employeePhone != null">
+                    #{employeePhone},
+                </if>
+                <if test="employeeAddress != null">
+                    #{employeeAddress},
+                </if>
+                <if test="employeeDepartment != null">
+                    #{employeeDepartment},
+                </if>
+                <if test="employeeJob != null">
+                    #{employeeJob},
+                </if>
+                <if test="employeeDetailCreateTime != null">
+                    #{employeeDetailCreateTime},
+                </if>
+                <if test="employeeDetailModifiedTime != null">
+                    #{employeeDetilModifiedTime},
+                </if>
+            </trim>
+        </insert>
+
+        <update id="updateEmployeeDetail" parameterType="EmployeeDetail">
+            UPDATE EMPLOYEE_DETAIL
+            <trim prefix="set" suffixOverrides=",">
+                <if test="employeeId != null">
+                    employee_id = #{employeeId},
+                </if>
+                <if test="employeeRealName != null">
+                    employee_real_name = #{employeeRealName},
+                </if>
+                <if test="headImage != null">
+                    head_image = #{headImage},
+                </if>
+                <if test="employeeAge != null">
+                    employee_age = #{employeeAge},
+                </if>
+                <if test="employeeSex != null">
+                    employee_sex = #{employeeSex},
+                </if>
+                <if test="employeeIdCard != null">
+                    employee_id_card = #{employeeIdCard},
+                </if>
+                <if test="employeeEmail != null">
+                    employee_email = #{employeeEmail},
+                </if>
+                <if test="employeePhone != null">
+                    employee_phone = #{employeePhone},
+                </if>
+                <if test="employeeAddress != null">
+                    employee_address = #{employeeAddress},
+                </if>
+                <if test="employeeDepartment != null">
+                    employee_department = #{employeeDepartment},
+                </if>
+                <if test="employeeJob != null">
+                    employee_job = #{employeeJob},
+                </if>
+                <if test="employeeDetailCreateTime != null">
+                    employeeDetail_create_time = #{employeeDetailCreateTime},
+                </if>
+                <if test="employeeDetailModifiedTime != null">
+                    employeeDetail_modified_time = #{employeeDetilModifiedTime},
+                </if>
+            </trim>
+            <where>
+                <choose>
+                    <when test="employeeId != null">
+                        AND employee_id = #{employeeId}
+                    </when>
+                    <otherwise>
+                        AND 1=2
+                    </otherwise>
+                </choose>
+            </where>
+        </update>
+
+        <select id="queryEmployeeDetailById" parameterType="EmployeeDetail" resultMap="employeeDetailMap">
+            <include refid="selectEmployeeDetail"></include>
+            <where>
+                <choose>
+                    <when test="id != null">
+                        AND id = #{id}
+                    </when>
+                    <otherwise>
+                        AND 1=2
+                    </otherwise>
+                </choose>
+            </where>
+        </select>
+
+       <select id="queryEmployeeDetailByEid"  resultMap="employeeDetailMap">
+            <include refid="selectEmployeeDetail"></include>
+            <where>
+                <choose>
+                    <when test="id != null">
+                        AND employee_id = #{id}
+                    </when>
+                    <otherwise>
+                        AND 1=2
+                    </otherwise>
+                </choose>
+            </where>
+        </select>
+
+        <select id="queryAllEmployeeDetail" parameterType="EmployeeDetail" resultMap="employeeDetailMap">
+            <include refid="selectEmployeeDetail"></include>
+        </select>
+</mapper>

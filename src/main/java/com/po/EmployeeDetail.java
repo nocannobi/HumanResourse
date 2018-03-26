@@ -13,8 +13,26 @@ public class EmployeeDetail extends BaseEntity{
     private String employeeEmail;
     private String employeePhone;
     private String employeeAddress;
+    private String employeeDepartment;
+    private String employeeJob;
     private Timestamp employeeDetailCreateTime;
     private Timestamp employeeDetailModifiedTime;
+
+    public String getEmployeeDepartment() {
+        return employeeDepartment;
+    }
+
+    public void setEmployeeDepartment(String employeeDepartment) {
+        this.employeeDepartment = employeeDepartment;
+    }
+
+    public String getEmployeeJob() {
+        return employeeJob;
+    }
+
+    public void setEmployeeJob(String employeeJob) {
+        this.employeeJob = employeeJob;
+    }
 
     public int getId() {
         return id;
@@ -125,6 +143,8 @@ public class EmployeeDetail extends BaseEntity{
                 ", employeeEmail='" + employeeEmail + '\'' +
                 ", employeePhone='" + employeePhone + '\'' +
                 ", employeeAddress='" + employeeAddress + '\'' +
+                ", employeeDepartment='" + employeeDepartment + '\'' +
+                ", employeeJob='" + employeeJob + '\'' +
                 ", employeeDetailCreateTime=" + employeeDetailCreateTime +
                 ", employeeDetailModifiedTime=" + employeeDetailModifiedTime +
                 '}';

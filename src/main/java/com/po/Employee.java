@@ -12,6 +12,8 @@ public class Employee extends BaseEntity{
     public static final Integer EMPLOYEE_IS_NOT_RETIRED = 1;
     public static final Integer EMPLOYEE_IS_ADMIN = 1;
     public static final Integer EMPLOYEE_IS_NOT_ADMIN = 0;
+    public static final Integer DETAIL_IS_WRITE = 1;
+    public static final Integer DETAIL_IS_NOT_WRITE = 0;
 
     private int id;
     private int jobId;
@@ -21,7 +23,7 @@ public class Employee extends BaseEntity{
     private Integer employeeIsAdmin;
     private Integer employeeIsWork;
     private Integer jobState;
-    private Integer employeeIsRetired;
+    private Integer detailIsWrite;
     private Timestamp employeeLoginTime;
     private Timestamp employeeCreateTime;
     private Timestamp employeeModifiedTime;
@@ -82,12 +84,12 @@ public class Employee extends BaseEntity{
         this.jobState = jobState;
     }
 
-    public Integer getEmployeeIsRetired() {
-        return employeeIsRetired;
+    public Integer getDetailIsWrite() {
+        return detailIsWrite;
     }
 
-    public void setEmployeeIsRetired(Integer employeeIsRetired) {
-        this.employeeIsRetired = employeeIsRetired;
+    public void setDetailIsWrite(Integer detailIsWrite) {
+        this.detailIsWrite = detailIsWrite;
     }
 
     public Timestamp getEmployeeLoginTime() {
@@ -133,7 +135,7 @@ public class Employee extends BaseEntity{
                 ", employeeIsAdmin=" + employeeIsAdmin +
                 ", employeeIsWork=" + employeeIsWork +
                 ", jobState=" + jobState +
-                ", employeeIsRetired=" + employeeIsRetired +
+                ", detailIsWrite=" + detailIsWrite +
                 ", employeeLoginTime=" + employeeLoginTime +
                 ", employeeCreateTime=" + employeeCreateTime +
                 ", employeeModifiedTime=" + employeeModifiedTime +

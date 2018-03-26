@@ -11,21 +11,37 @@
         <result column="basic_wage" property="basicWage"></result>
         <result column="employee_is_work" property="employeeIsWork"></result>
         <result column="job_state" property="jobState"></result>
-        <result column="employee_is_retired" property="employeeIsRetired"></result>
+        <result column="detail_is_write" property="detailIsWrite"></result>
         <result column="employee_login_time" property="employeeLoginTime"></result>
         <result column="employee_create_time" property="employeeCreateTime"></result>
         <result column="employee_modified_time" property="employeeModifiedTime"></result>
-
+<!--
+        <association property="employeeDetail" column="id" select="com.dao.EmployeeDetailDao.queryEmployeeDetailByEid"></association>
+-->
     </resultMap>
     <sql id="selectEmployee">
         SELECT * FROM employee
     </sql>
-    <select id="queryEmployeeByName" parameterType="Employee" resultMap="employeeMap">
+    <select id="queryEmployeeByEmployee" parameterType="Employee" resultMap="employeeMap">
         <include refid="selectEmployee"></include>
         <where>
             <choose>
                 <when test="employeeName != null and employeePassword != null and employeeIsAdmin != null" >
                     AND employee_name = #{employeeName} AND employee_password = #{employeePassword} AND employee_is_admin = 0
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryEmployeeByName" parameterType="Employee" resultMap="employeeMap">
+        <include refid="selectEmployee"></include>
+        <where>
+            <choose>
+                <when test="employeeName != null ">
+                    AND employee_name = #{employeeName}
                 </when>
                 <otherwise>
                     AND 1=2
@@ -66,6 +82,11 @@
         <include refid="selectEmployee"></include>
     </select>
 
+    <select id="queryAllEmployeeByDetail"  resultMap="employeeMap">
+        <include refid="selectEmployee"></include>
+        WHERE detail_is_write = 0
+    </select>
+
     <insert id="addEmployee" parameterType="Employee">
         <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
             SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
@@ -97,8 +118,8 @@
             <if test="jobState != null">
                 job_state,
             </if>
-            <if test="employeeIsRetired != null">
-                employee_is_retired,
+            <if test="detailIsWrite != null">
+                detail_is_write,
             </if>
             <if test="employeeLoginTime != null">
                 employee_login_time,
@@ -135,8 +156,8 @@
             <if test="jobState != null">
                 #{jobState},
             </if>
-            <if test="employeeIsRetired != null">
-                #{employeeIsRetired},
+            <if test="detailIsWrite != null">
+                #{detailIsWrite},
             </if>
             <if test="employeeLoginTime != null">
                 #{employeeLoginTime},
@@ -152,7 +173,7 @@
 
     <update id="updateEmployee" parameterType="Employee">
         UPDATE employee
-        <set>
+        <trim prefix="set" suffixOverrides=",">
             <if test="jobId != null">
                 job_id = #{jobId},
             </if>
@@ -174,8 +195,8 @@
             <if test="jobState != null">
                job_state =  #{jobState},
             </if>
-            <if test="employeeIsRetired != null">
-                employee_is_retired = #{employeeIsRetired},
+            <if test="detailIsWrite != null">
+                detail_is_write = #{detailIsWrite},
             </if>
             <if test="employeeLoginTime != null">
                 employee_login_time = #{employeeLoginTime},
@@ -186,7 +207,7 @@
             <if test="employeeModifiedTime != null">
                employee_modified_time = #{employeeModifiedTime},
             </if>
-        </set>
+        </trim>
         <where>
             <choose>
                 <when test="id != null">
@@ -201,7 +222,7 @@
 
     <delete id="deleteEmployee" parameterType="Employee">
         UPDATE employee
-        SET EMPLOYEE_IS_ADMIN = #{employeeIsAdmin}
+        SET EMPLOYEE_IS_WORK = 0
         <where>
             <choose>
                 <when test="id != null">

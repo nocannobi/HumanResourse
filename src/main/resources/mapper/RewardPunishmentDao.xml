@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.RewardPunishmentDao">
+        <resultMap id="rewardPunishmentMap" type="RewardPunishment">
+            <id column="id" property="id"></id>
+            <result column="employee_id" property="employeeId"></result>
+            <result column="reward_punishment_content" property="rewardPunishmentContent"></result>
+            <result column="reward_punishment_conn" property="rewardPunishmentConn"></result>
+            <result column="is_reward_punishment" property="isRewardPunishment"></result>
+            <result column="create_time" property="createTime"></result>
+            <result column="modified_time" property="modifiedTime"></result>
+        </resultMap>
+
+    <sql id="selectRewardPunishment">
+        SELECT * FROM REWARD_PUNISHMENT
+    </sql>
+
+    <insert id="addRewardPunishment" parameterType="RewardPunishment">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO REWARD_PUNISHMENT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="rewardPunishmentContent != null">
+                reward_punishment_content,
+            </if>
+            <if test="rewardPunishmentConn != null">
+                reward_punishment_conn,
+            </if>
+            <if test="punchWorkTime != null">
+                is_reward_punishment,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="modifiedTime != null">
+                modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="employeeId != null">
+                #{employeeId},
+            </if>
+            <if test="rewardPunishmentContent != null">
+                #{rewardPunishmentContent},
+            </if>
+            <if test="rewardPunishmentConn != null">
+                #{rewardPunishmentConn},
+            </if>
+            <if test="isRewardPunishment != null">
+                #{isRewardPunishment},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="modifiedTime != null">
+                #{modifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateRewardPunishment" parameterType="RewardPunishment">
+        UPDATE REWARD_PUNISHMENT
+        <trim prefix="set" suffixOverrides=",">
+            <if test="employeeId != null">
+                employee_id = #{employeeId},
+            </if>
+            <if test="rewardPunishmentContent != null">
+                reward_punishment_content = #{rewardPunishmentContent},
+            </if>
+            <if test="rewardPunishmentConn != null">
+                reward_punishment_conn = #{rewardPunishmentConn},
+            </if>
+            <if test="isRewardPunishment != null">
+                is_reward_punishement = #{isRewardPunishment},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="modifiedTime != null">
+                modified_time = #{modifiedTime},
+            </if>
+        </trim>
+    </update>
+
+    <select id="queryRewardPunishmentById" parameterType="RewardPunishment" resultMap="rewardPunishmentMap">
+        <include refid="selectRewardPunishment"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryRewardPunishmentByEid" parameterType="Employee" resultMap="rewardPunishmentMap">
+        <include refid="selectRewardPunishment"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND employee_id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllRewardPunishment" resultMap="rewardPunishmentMap">
+        <include refid="selectRewardPunishment"></include>
+    </select>
+</mapper>

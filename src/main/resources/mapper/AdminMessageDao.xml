@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AdminMessageDao">
+    <resultMap id="adminMessageMap" type="AdminMessage">
+        <id column="id" property="id"></id>
+        <result column="admin_id" property="adminId"></result>
+        <result column="customer_id" property="customerId"></result>
+        <result column="employee_id" property="employeeId"></result>
+        <result column="message_theme" property="messageTheme"></result>
+        <result column="message_content" property="messageContent"></result>
+        <result column="message_is_view" property="messageIsView"></result>
+        <result column="message_is_recieve" property="messageIsRecieve"></result>
+        <result column="message_is_delete" property="messageIsDelete"></result>
+        <result column="message_create_time" property="messageCreateTime"></result>
+        <result column="message_modified_time" property="messageModifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectAdminMessage">
+        SELECT * FROM ADMIN_MESSAGE
+    </sql>
+
+    <insert id="addAdminMessage" parameterType="AdminMessage">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO admin_message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="adminId != null">
+                admin_id,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="messageTheme != null">
+                message_theme,
+            </if>
+            <if test="messageContent != null">
+                message_content,
+            </if>
+            <if test="messageIsView != null">
+                message_is_view,
+            </if>
+            <if test="messageIsRecieve != null">
+                message_is_recieve,
+            </if>
+            <if test="message_is_delete != null">
+                message_is_delete,
+            </if>
+            <if test="messageCreateTime != null">
+                message_create_time,
+            </if>
+            <if test="messageModifiedTime != null">
+                message_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="adminId != null">
+                #{adminId},
+            </if>
+            <if test="customerId != null">
+                #{customerId},
+            </if>
+            <if test="employeeId != null">
+                #{employeeId},
+            </if>
+            <if test="messageTheme != null">
+                #{messageTheme},
+            </if>
+            <if test="messageContent != null">
+                #{messageContent},
+            </if>
+            <if test="messageIsView != null">
+                #{messageIsView},
+            </if>
+            <if test="messageIsRecieve != null">
+                #{messageIsRecieve},
+            </if>
+            <if test="message_is_delete != null">
+                #{messageIsDelete},
+            </if>
+            <if test="messageCreateTime != null">
+                #{messageCreateTime},
+            </if>
+            <if test="messageModifiedTime != null">
+                #{messageModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteAdminMessage" parameterType="AdminMessage">
+        UPDATE ADMIN_MESSAGE SET MESSAGE_IS_DELETE = 1
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="queryAdminMessageById" parameterType="AdminMessage" resultMap="adminMessageMap">
+        <include refid="selectAdminMessage"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllAdminMessage" resultMap="adminMessageMap">
+        <include refid="selectAdminMessage"></include>
+    </select>
+
+</mapper>

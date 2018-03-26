@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AttendanceDao">
+    <resultMap id="attendanceMap" type="Attendance">
+        <id column="id" property="id"></id>
+        <result column="employee_id" property="employeeId"></result>
+        <result column="work_time" property="workTime"></result>
+        <result column="off_time" property="offTime"></result>
+        <result column="punch_work_time" property="punchWorkTime"></result>
+        <result column="punch_off_time" property="punchOffTime"></result>
+        <result column="employee_state" property="employeeState"></result>
+        <result column="attendance_create_time" property="attendanceCreateTime"></result>
+        <result column="attendance_modified_time" property="attendanceModifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectAttendance">
+        SELECT * FROM ATTENDANCE
+    </sql>
+
+    <insert id="addAttendance" parameterType="Attendance">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO ATTENDANCE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="workTime != null">
+                work_time,
+            </if>
+            <if test="offTime != null">
+                off_time,
+            </if>
+            <if test="punchWorkTime != null">
+                punch_work_time,
+            </if>
+            <if test="punchOffTime != null">
+                punch_off_time,
+            </if>
+            <if test="employeeState != null">
+                employee_state,
+            </if>
+            <if test="attendanceCreateTime != null">
+                attendance_create_time,
+            </if>
+            <if test="attendanceModifiedTime != null">
+                attendance_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="employeeId != null">
+                #{employeeId},
+            </if>
+            <if test="workTime != null">
+                #{workTime},
+            </if>
+            <if test="offTime != null">
+                #{offTime},
+            </if>
+            <if test="punchWorkTime != null">
+                #{punchWorkTime},
+            </if>
+            <if test="punchOffTime != null">
+                #{punchOffTime},
+            </if>
+            <if test="employeeState != null">
+                #{employeeState},
+            </if>
+            <if test="attendanceCreateTime != null">
+                #{attendanceCreateTime},
+            </if>
+            <if test="attendanceModifiedTime != null">
+                #{attendanceModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateAttendance" parameterType="Attendance">
+        UPDATE ATTENDANCE
+        <trim prefix="set" suffixOverrides=",">
+            <if test="employeeId != null">
+                employee_id = #{employeeId},
+            </if>
+            <if test="workTime != null">
+                work_time = #{workTime},
+            </if>
+            <if test="offTime != null">
+                off_time = #{offTime},
+            </if>
+            <if test="punchWorkTime != null">
+                punch_work_time = #{punchWorkTime},
+            </if>
+            <if test="punchOffTime != null">
+                punch_off_time = #{punchOffTime},
+            </if>
+            <if test="employeeState != null">
+                employee_state = #{employeeState},
+            </if>
+            <if test="attendanceCreateTime != null">
+                attendance_create_time = #{attendanceCreateTime},
+            </if>
+            <if test="attendanceModifiedTime != null">
+                attendance_modified_time = #{attendanceModifiedTime},
+            </if>
+        </trim>
+    </update>
+
+    <select id="queryAttendanceById" parameterType="Attendance" resultMap="attendanceMap">
+        <include refid="selectAttendance"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAttendanceByEid" parameterType="Employee" resultMap="attendanceMap">
+        <include refid="selectAttendance"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND employee_id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllAttendance" resultMap="attendanceMap">
+        <include refid="selectAttendance"></include>
+    </select>
+</mapper>

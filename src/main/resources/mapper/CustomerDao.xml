@@ -19,12 +19,82 @@
         SELECT  * FROM CUSTOMER
     </sql>
 
-    <select id="queryCustomerByName" parameterType="Customer" resultMap="customerMap">
+    <select id="queryCustomerByCustomer" parameterType="Customer" resultMap="customerMap">
         <include refid="selectCustomer"></include>
         <where>
             <choose>
                 <when test="customerName != null and customerPassword != null">
                    AND customer_name = #{customerName} AND customer_password = #{customerPassword}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryCustomerByPhone2" parameterType="Customer" resultMap="customerMap">
+        <include refid="selectCustomer"></include>
+        <where>
+            <choose>
+                <when test="customerPhone != null and customerPassword != null">
+                   AND customer_phone = #{customerPhone} AND customer_password = #{customerPassword}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryCustomerByEmail2" parameterType="Customer" resultMap="customerMap">
+        <include refid="selectCustomer"></include>
+        <where>
+            <choose>
+                <when test="customerEmail != null and customerPassword != null">
+                   AND customer_email = #{customerEmail} AND customer_password = #{customerPassword}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryCustomerByName" parameterType="Customer" resultMap="customerMap">
+        <include refid="selectCustomer"></include>
+        <where>
+            <choose>
+                <when test="customerName != null">
+                   AND customer_name = #{customerName}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryCustomerByPhone" parameterType="Customer" resultMap="customerMap">
+        <include refid="selectCustomer"></include>
+        <where>
+            <choose>
+                <when test="customerPhone != null">
+                   AND customer_phone = #{customerPhone}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryCustomerByEmail" parameterType="Customer" resultMap="customerMap">
+        <include refid="selectCustomer"></include>
+        <where>
+            <choose>
+                <when test="customerEmail != null">
+                   AND customer_email = #{customerEmail}
                 </when>
                 <otherwise>
                     AND 1=2
@@ -121,7 +191,7 @@
     <!--更改用户-->
     <update id="updateCustomer" parameterType="Customer">
         UPDATE customer
-        <set>
+        <trim suffix="set" suffixOverrides=",">
             <if test="customerName != null">
                customer_name = #{customerName} ,
             </if>
@@ -144,9 +214,9 @@
                 customer_create_time = #{customerCreateTime},
             </if>
             <if test="customerModifiedTime != null">
-                customer_modified_time =　#{customerModifiedTime},
+                customer_modified_time = #{customerModifiedTime},
             </if>
-        </set>
+        </trim>
         <where>
             <choose>
                 <when test="id != null">
@@ -161,7 +231,7 @@
 
     <!--删除用户-->
     <delete id="deleteCustomer" parameterType="Customer">
-        UPDATE customer SET CUSTOMER_IS_NORMAL = #{customerIsNormal} WHERE ID = #{id}
+        UPDATE customer SET CUSTOMER_IS_NORMAL = 0 WHERE ID = #{id}
     </delete>
 
 

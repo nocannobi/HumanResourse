@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.WageDao">
+    <resultMap id="wageMap" type="Wage">
+        <id column="id" property="id"></id>
+        <result column="employee_id" property="employeeId"></result>
+        <result column="commission" property="commission"></result>
+        <result column="social_insurance" property="socialInsurance"></result>
+        <result column="reward_punishment_money" property="rewardPunishmentMoney"></result>
+        <result column="is_give" property="isGive"></result>
+        <result column="wage_month" property="wageMonth"></result>
+        <result column="all_money" property="AllMoney"></result>
+        <result column="is_review" property="isReview"></result>
+        <result column="wage_create_time" property="wageCreateTime"></result>
+        <result column="wage_modified_time" property="wageModifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectWage">
+        SELECT * FROM WAGE
+    </sql>
+
+    <insert id="addWage" parameterType="Wage" >
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO wage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="commission != null">
+                commission,
+            </if>
+            <if test="socialInsurance != null">
+                social_insurance,
+            </if>
+            <if test="rewardPunishmentMoney != null">
+                reward_punishment_money,
+            </if>
+            <if test="isGive != null">
+                is_give,
+            </if>
+            <if test="wageMonth != null">
+                wage_month,
+            </if>
+            <if test="allMoney != null">
+                all_money,
+            </if>
+            <if test="isReview != null">
+                is_review,
+            </if>
+            <if test="wageCreateTime != null">
+                wage_create_time,
+            </if>
+            <if test="wageModifiedTime != null">
+                wage_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="employeeId != null">
+                #{employeeId},
+            </if>
+            <if test="commission != null">
+                #{commission},
+            </if>
+            <if test="socialInsurance != null">
+                #{socialInsurance},
+            </if>
+            <if test="rewardPunishmentMoney != null">
+                #{rewardPunishmentMoney},
+            </if>
+            <if test="wageMonth != null">
+                #{wageMonth},
+            </if>
+            <if test="allMoney != null">
+                #{allMoney},
+            </if>
+            <if test="isReview != null">
+                #{isReview},
+            </if>
+            <if test="wageCreateTime != null">
+                #{wageCreateTime},
+            </if>
+            <if test="wageModifiedTime != null">
+                #{wageModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateWage" parameterType="Wage">
+        UPDATE WAGE
+        <trim prefix="set" suffixOverrides=",">
+            <if test="employeeId != null">
+                employee_id = #{employeeId},
+            </if>
+            <if test="commission != null">
+                commission = #{commission},
+            </if>
+            <if test="socialInsurance != null">
+                social_insurance = #{socialInsurance},
+            </if>
+            <if test="rewardPunishmentMoney != null">
+                reward_punishment_money = #{rewardPunishmentMoney},
+            </if>
+            <if test="isGive != null">
+                is_give = #{isGive},
+            </if>
+            <if test="wageMonth != null">
+                wage_month = #{wageMonth},
+            </if>
+            <if test="allMoney != null">
+                all_money = #{allMoney},
+            </if>
+            <if test="isReview != null">
+                is_review = #{isReview},
+            </if>
+            <if test="wageCreateTime != null">
+                wage_create_time = #{wageCreateTime},
+            </if>
+            <if test="wageModifiedTime != null">
+                wage_modified_time = #{wageModifiedTime},
+            </if>
+        </trim>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
+    <select id="queryWageById" parameterType="Wage" resultMap="wageMap">
+        <include refid="selectWage"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryWageByEid" parameterType="Wage" resultMap="wageMap">
+        <include refid="selectWage"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND employee_id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllWage" resultMap="wageMap">
+        <include refid="selectWage"></include>
+    </select>
+</mapper>

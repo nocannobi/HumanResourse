@@ -7,6 +7,8 @@ import com.service.EmployeeDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeDetailServiceImpl implements EmployeeDetailService {
 
@@ -43,5 +45,10 @@ public class EmployeeDetailServiceImpl implements EmployeeDetailService {
             return null;
         }
         return employeeDetailDao.queryEmployeeDetailByEid(employee);
+    }
+
+    @Override
+    public List<EmployeeDetail> queryAllEmployeeDetail() {
+        return employeeDetailDao.queryAllEmployeeDetail();
     }
 }

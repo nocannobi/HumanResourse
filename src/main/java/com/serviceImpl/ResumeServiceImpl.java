@@ -30,11 +30,11 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public Resume queryResumeByCid(Customer customer) {
-        if(customer == null){
+    public Resume queryResumeByCid(Resume resume) {
+        if(resume == null){
            return null;
         }
-        return resumeDao.queryResumeByCid(customer);
+        return resumeDao.queryResumeByCid(resume);
     }
 
     @Override

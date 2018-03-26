@@ -47,6 +47,46 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer queryCustomerByCustomer(Customer customer) {
+        if(customer == null){
+            return null;
+        }
+        return customerDao.queryCustomerByCustomer(customer);
+    }
+
+    @Override
+    public Customer queryCustomerByPhone2(Customer customer) {
+        if(customer == null){
+            return null;
+        }
+        return customerDao.queryCustomerByPhone2(customer);
+    }
+
+    @Override
+    public Customer queryCustomerByEmail2(Customer customer) {
+        if(customer == null){
+            return null;
+        }
+        return customerDao.queryCustomerByEmail2(customer);
+    }
+
+    @Override
+    public Customer queryCustomerByPhone(Customer customer) {
+        if(customer == null){
+           return null;
+        }
+        return customerDao.queryCustomerByPhone(customer);
+    }
+
+    @Override
+    public Customer queryCustomerByEmail(Customer customer) {
+        if(customer == null){
+            return null;
+        }
+        return customerDao.queryCustomerByEmail(customer);
+    }
+
+    @Override
     public Customer queryCustomerById(Customer customer) {
         if(customer == null){
            return null;

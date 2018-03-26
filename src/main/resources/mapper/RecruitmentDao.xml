@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.RecruitmentDao">
+    <resultMap id="recruitmentMap" type="Recruitment">
+        <id column="id" property="id"></id>
+        <result column="admin_id" property="adminId"></result>
+        <result column="company" property="company"></result>
+        <result column="job" property="job"></result>
+        <result column="job_number" property="jobNumber"></result>
+        <result column="salary" property="salary"></result>
+        <result column="job_content" property="jobContent"></result>
+        <result column="company_address" property="companyAddress"></result>
+        <result column="recruitment_is_delete" property="recruitmentIsDelete"></result>
+        <result column="recruitment_create_time" property="recruitmentCreateTime"></result>
+        <result column="recruitment_modified_time" property="recruitmentModifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectRecruitment">
+        SELECT * FROM RECRUITMENT
+    </sql>
+
+    <insert id="addRecruitment" parameterType="Recruitment">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO recruitment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="adminId != null">
+                admin_id,
+            </if>
+            <if test="company != null">
+                company,
+            </if>
+            <if test="job != null">
+                job,
+            </if>
+            <if test="jobNumber != null">
+                job_number,
+            </if>
+            <if test="salary != null">
+                salary,
+            </if>
+            <if test="jobContent != null">
+                job_content,
+            </if>
+            <if test="companyAddress != null">
+                company_address,
+            </if>
+            <if test="recruitmentIsDelete != null">
+                recruitment_is_delete,
+            </if>
+            <if test="recruitmentCreateTime != null">
+                recruitment_create_time,
+            </if>
+            <if test="recruitmentModifiedTime != null">
+                recruitment_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="adminId != null">
+                #{adminId},
+            </if>
+            <if test="company != null">
+                #{company},
+            </if>
+            <if test="job != null">
+                #{job},
+            </if>
+            <if test="jobNumber != null">
+                #{jobNumber},
+            </if>
+            <if test="salary != null">
+                #{salary},
+            </if>
+            <if test="jobContent != null">
+                #{jobContent},
+            </if>
+            <if test="companyAddress != null">
+                #{companyAddress},
+            </if>
+            <if test="recruitmentIsDelete != null">
+                #{recruitmentIsDelete},
+            </if>
+            <if test="recruitmentCreateTime != null">
+                #{recruitmentCreateTime},
+            </if>
+            <if test="recruitmentModifiedTime != null">
+                #{recruitmentModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateRecruitment" parameterType="Recruitment">
+        UPDATE recruitment
+        <trim prefix="set " suffixOverrides=",">
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="adminId != null">
+                admin_id = #{adminId},
+            </if>
+            <if test="company != null">
+                company = #{company},
+            </if>
+            <if test="job != null">
+                job = #{job},
+            </if>
+            <if test="jobNumber != null">
+                job_number = #{jobNumber},
+            </if>
+            <if test="salary != null">
+                salary = #{salary},
+            </if>
+            <if test="jobContent != null">
+                job_content = #{jobContent},
+            </if>
+            <if test="companyAddress != null">
+                company_address = #{companyAddress},
+            </if>
+            <if test="recruitmentIsDelete != null">
+                recruitment_is_delete = #{recruitmentIsDelete},
+            </if>
+            <if test="recruitmentCreateTime != null">
+                recruitment_create_time = #{recruitmentCreateTime},
+            </if>
+            <if test="recruitmentModifiedTime != null">
+                recruitment_modified_time = #{recruitmentModifiedTime},
+            </if>
+        </trim>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
+    <delete id="deleteRecruitment" parameterType="Recruitment">
+        UPDATE recruitment SET RECRUITMENT_IS_DELETE = 1
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="queryAllRecruitment" parameterType="Recruitment" resultMap="recruitmentMap">
+        <include refid="selectRecruitment"></include>
+    </select>
+
+    <select id="queryRecruitmentById" parameterType="Recruitment" resultMap="recruitmentMap">
+        <include refid="selectRecruitment"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+</mapper>

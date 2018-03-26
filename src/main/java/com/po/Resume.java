@@ -5,11 +5,14 @@ import java.sql.Timestamp;
 public class Resume extends BaseEntity{
     private int id;
     private int customerId;
+    private int recruitmentId;
     private String realName;
+    private String headImage;
     private String idCard;
     private String sex;
     private String birth;
     private String nation;
+    private String address;
     private String phone;
     private String email;
     private String graduation;
@@ -19,6 +22,29 @@ public class Resume extends BaseEntity{
     private Timestamp resumeCreateTime;
     private Timestamp resumeModifiedTime;
 
+    public int getRecruitmentId() {
+        return recruitmentId;
+    }
+
+    public void setRecruitmentId(int recruitmentId) {
+        this.recruitmentId = recruitmentId;
+    }
+
+    public String getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getIdCard() {
         return idCard;
@@ -145,11 +171,14 @@ public class Resume extends BaseEntity{
         return "Resume{" +
                 "id=" + id +
                 ", customerId=" + customerId +
+                ", recruitmentId=" + recruitmentId +
                 ", realName='" + realName + '\'' +
+                ", headImage='" + headImage + '\'' +
                 ", idCard='" + idCard + '\'' +
                 ", sex='" + sex + '\'' +
                 ", birth='" + birth + '\'' +
                 ", nation='" + nation + '\'' +
+                ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", graduation='" + graduation + '\'' +

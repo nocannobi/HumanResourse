@@ -39,6 +39,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Employee queryEmployeeByEmployee(Employee employee) {
+        if(employee == null){
+            return null;
+        }
+        return employeeDao.queryEmployeeByEmployee(employee);
+    }
+
+    @Override
     public Employee queryEmployeeByName(Employee employee) {
         if(employee == null){
             return null;
@@ -60,6 +68,11 @@ public class EmployeeServiceImpl implements EmployeeService {
           return null;
         }
         return employeeDao.queryEmployeeById(employee);
+    }
+
+    @Override
+    public List<Employee> queryAllEmployeeByDetail() {
+        return employeeDao.queryAllEmployeeByDetail();
     }
 
     @Override

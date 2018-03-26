@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TrainingDao">
+    <resultMap id="trainingMap" type="Training">
+        <id column="id" property="id"></id>
+        <result column="training_name" property="trainingName"></result>
+        <result column="training_time" property="trainingTime"></result>
+        <result column="training_location" property="trainingLocation"></result>
+        <result column="training_content" property="trainingContent"></result>
+        <result column="training_is_delete" property="trainingIsDelete"></result>
+        <result column="training_create_time" property="trainingCreateTime"></result>
+        <result column="training_modified_time" property="trainingModifiedTime"></result>
+<!--
+        <association property="trainingRecord" column="{trainingId = id}" select="com.dao.TrainingDao.queryTrainingRecordByTid"></association>
+-->
+    </resultMap>
+
+    <sql id="selectTraining">
+        SELECT * FROM training
+    </sql>
+
+    <insert id="addTraining" parameterType="Training">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO training
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="trainingName != null">
+                training_name,
+            </if>
+            <if test="trainingTime != null">
+                training_time,
+            </if>
+            <if test="trainingLocation != null">
+                training_location,
+            </if>
+            <if test="trainingContent != null">
+                training_content,
+            </if>
+            <if test="trainingIsDelete != null">
+                training_is_delete,
+            </if>
+            <if test="trainingCreateTime != null">
+                training_create_time,
+            </if>
+            <if test="trainingModifiedTime != null">
+                training_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="trainingName != null">
+                #{trainingName},
+            </if>
+            <if test="trainingTime != null">
+                #{trainingTime},
+            </if>
+            <if test="trainingLocation != null">
+                #{trainingLocation},
+            </if>
+            <if test="trainingContent != null">
+                #{trainingContent},
+            </if>
+            <if test="trainingIsDelete != null">
+                #{trainingIsDelete},
+            </if>
+            <if test="trainingCreateTime != null">
+                #{trainingCreateTime},
+            </if>
+            <if test="trainingModifiedTime != null">
+                #{trainingModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateTraining" parameterType="Training">
+        UPDATE training
+        <trim prefix="set" suffixOverrides=",">
+            <if test="trainingName != null">
+                training_name = #{trianingName},
+            </if>
+            <if test="trainingTime != null">
+                training_time = #{trainingTime},
+            </if>
+            <if test="trainingLocation != null">
+                training_location = #{trainingLocation},
+            </if>
+            <if test="trainingContent != null">
+                training_content = #{trainingContent},
+            </if>
+            <if test="trainingIsDelete != null">
+                training_is_delete = #{trainingIsDelete},
+            </if>
+            <if test="trainingCreateTime != null">
+                training_create_time = #{trainingCreateTime},
+            </if>
+            <if test="trainingModifiedTime != null">
+                training_modified_time = #{trainingModifiedTime},
+            </if>
+        </trim>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
+    <delete id="deleteTraining" parameterType="Training">
+        UPDATE TRAINING SET TRAINING_IS_DELETE = 1
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="queryTrainingById" parameterType="Training" resultMap="trainingMap">
+        <include refid="selectTraining"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllTraining" parameterType="Training" resultMap="trainingMap">
+        <include refid="selectTraining"></include>
+    </select>
+</mapper>

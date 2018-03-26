@@ -17,21 +17,22 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/customer/customerView.view">首页</a>
+            <a class="navbar-brand" href="#">首页</a>
         </div>
         <div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">职位搜索</a></li>
-                <li><a href="#">SVN</a></li>
+                <li class="active"><a href="#">投递信息</a></li>
+                <li class="active"><a href="/customer/resumeView.view">查看简历</a></li>
+                <li class="active"><a href="#">消息中心</a></li>
                 <li class="dropdown">
+                    <div class=""></div>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         个人中心
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">简历中心</a></li>
-                        <li><a href="#">我的收藏</a></li>
-                        <li><a href="#">我的申请</a></li>
+                        <li><a href="/customer/resume.view">修改简历</a></li>
                         <li class="divider"></li>
                         <li><a href="/customer/customerLogin.view">退出</a></li>
                     </ul>

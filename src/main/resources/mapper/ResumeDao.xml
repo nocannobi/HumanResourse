@@ -6,10 +6,13 @@
     <resultMap id="resumeMap" type="Resume">
         <id column="id" property="id"></id>
         <result column="customer_id" property="customerId"></result>
+        <result column="recruitment_id" property="recruitmentId"></result>
         <result column="real_name" property="realName"></result>
+        <result column="head_image" property="headImage"></result>
         <result column="sex" property="sex"></result>
         <result column="birth" property="birth"></result>
         <result column="nation" property="nation"></result>
+        <result column="address" property="address"></result>
         <result column="phone" property="phone"></result>
         <result column="email" property="email"></result>
         <result column="graduation" property="graduation"></result>
@@ -38,12 +41,26 @@
         </where>
     </select>
 
-    <select id="queryResumeByCid" parameterType="Customer" resultMap="resumeMap">
+    <select id="queryResumeByRid" parameterType="Resume" resultMap="resumeMap">
+        <include refid="selectResume"></include>
+        <where>
+            <choose>
+                <when test="recruitmentId != null">
+                   AND recruitment_id = #{recruitmentId}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryResumeByCid" parameterType="Resume" resultMap="resumeMap">
         <include refid="selectResume"></include>
         <where>
             <choose>
                 <when test="customerId != null">
-                    AND customer_id = #{id}
+                    AND customer_id = #{customerId}
                 </when>
                 <otherwise>
                     AND 1=2
@@ -57,6 +74,7 @@
             SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
         </selectKey>
 
+        INSERT INTO resume
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -66,6 +84,9 @@
             </if>
             <if test="realName != null">
                 real_name,
+            </if>
+            <if test="headImage != null">
+                head_image,
             </if>
             <if test="idCard != null">
                 id_card,
@@ -78,6 +99,9 @@
             </if>
             <if test="nation != null">
                 nation,
+            </if>
+            <if test="address != null">
+                address,
             </if>
             <if test="phone != null">
                 phone,
@@ -94,7 +118,7 @@
             <if test="personalEvaluation != null">
                 personal_evaluation,
             </if>
-            <if test="work_experience != null">
+            <if test="workExperience != null">
                 work_experience,
             </if>
             <if test="resumeCreateTime != null">
@@ -114,6 +138,9 @@
             <if test="realName != null">
                 #{realName},
             </if>
+            <if test="headImage != null">
+                #{headImage},
+            </if>
             <if test="idCard != null">
                 #{idCard},
             </if>
@@ -125,6 +152,9 @@
             </if>
             <if test="nation != null">
                 #{nation},
+            </if>
+            <if test="address != null">
+                #{address},
             </if>
             <if test="phone != null">
                 #{phone},
@@ -141,7 +171,7 @@
             <if test="personalEvaluation != null">
                 #{personalEvaluation},
             </if>
-            <if test="work_experience != null">
+            <if test="workExperience != null">
                 #{workExperience},
             </if>
             <if test="resumeCreateTime != null">
@@ -155,9 +185,12 @@
 
     <update id="updateResume" parameterType="Resume">
         UPDATE RESUME
-        <set>
+        <trim prefix="set" suffixOverrides=",">
             <if test="realName != null">
                real_name = #{realName},
+            </if>
+            <if test="headImage != null">
+                head_iamge = #{headImage},
             </if>
             <if test="idCard != null">
                 id_card = #{idCard},
@@ -170,6 +203,9 @@
             </if>
             <if test="nation != null">
                 nation = #{nation},
+            </if>
+            <if test="address != null">
+                address = #{address},
             </if>
             <if test="phone != null">
                 phone = #{phone},
@@ -186,7 +222,7 @@
             <if test="personalEvaluation != null">
                 personal_evaluation = #{personalEvaluation},
             </if>
-            <if test="work_experience != null">
+            <if test="workExperience != null">
                 work_experience = #{workExperience},
             </if>
             <if test="resumeCreateTime != null">
@@ -195,11 +231,11 @@
             <if test="resumeModifiedTime != null">
                 resume_modified_time = #{resumeModifiedTime},
             </if>
-        </set>
+        </trim>
         <where>
             <choose>
-                <when test="id != null">
-                    AND id = #{id}
+                <when test="customerId != null">
+                    AND customer_id = #{customerId}
                 </when>
                 <otherwise>
                     AND 1=2

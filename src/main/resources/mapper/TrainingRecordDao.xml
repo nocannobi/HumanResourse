@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TrainingRecordDao">
+    <resultMap id="trainingRecordMap" type="TrainingRecord">
+        <id column="id" property="id"></id>
+        <result column="training_id" property="trainingId"></result>
+        <result column="employee_id" property="employeeId"></result>
+        <result column="employee_is_training" property="employeeIsTraining"></result>
+        <result column="record_is_delete" property="recordIsDelete"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="modified_time" property="modifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectTrainingRecord">
+        SELECT * FROM TRAINING_RECORD
+    </sql>
+
+    <insert id="addTrainingRecord" parameterType="TrainingRecord">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id"></selectKey>
+        INSERT INTO TRAINING_RECORD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="trainingId != null">
+                training_id,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="employeeIsTraining != null">
+                employee_is_trainng,
+            </if>
+            <if test="recordIsDelete != null">
+                record_is_delete,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="modifiedTime != null">
+                modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="trainingId != null">
+                #{trainingId},
+            </if>
+            <if test="employeeId != null">
+                #{employeedId},
+            </if>
+            <if test="employeeIsTraining != null">
+                #{employeeIsTraining},
+            </if>
+            <if test="recordIsDelete != null">
+                #{recordIsDelete},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="modifiedTime != null">
+                #{modifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateTrainingRecord" parameterType="TrainingRecord">
+        UPDATE TRAINING_RECORD
+        <trim prefix="set" suffixOverrides=",">
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="trainingId != null">
+                training_id = #{trainingId},
+            </if>
+            <if test="employeeId != null">
+                employee_id = #{employeedId},
+            </if>
+            <if test="employeeIsTraining != null">
+                employee_is_training = #{employeeIsTraining},
+            </if>
+            <if test="recordIsDelete != null">
+                record_is_delete = #{recordIsDelete},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="modifiedTime != null">
+                modified_time = #{modifiedTime},
+            </if>
+        </trim>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
+    <delete id="deleteTrainingRecord" parameterType="TrainingRecord">
+        UPDATE TRAINING_RECORD SET RECORD_IS_DELETE = 1
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="queryTrainingRecord" parameterType="TrainingRecord" resultMap="trainingRecordMap">
+        <include refid="selectTrainingRecord"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryTrainingRecordByTid" parameterType="Training" resultMap="trainingRecordMap">
+        <include refid="selectTrainingRecord"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND training_id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryTrainingRecordByEid" parameterType="Employee" resultMap="trainingRecordMap">
+        <include refid="selectTrainingRecord"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND employee_id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllTrainingRecord" parameterType="TrainingRecord" resultMap="trainingRecordMap">
+        <include refid="selectTrainingRecord"></include>
+    </select>
+
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.JobDao">
+    <resultMap id="jobMap" type="Job">
+        <id column="id" property="id"></id>
+        <result column="department_id" property="departmentId"></result>
+        <result column="job_name" property="jobName"></result>
+        <result column="job_is_delete" property="jobIsDelete"></result>
+        <result column="job_create_time" property="jobCreateTime"></result>
+        <result column="job_modified_time" property="jobModifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectJob">
+        SELECT * FROM JOB
+    </sql>
+
+    <select id="queryJobById" parameterType="Job" resultMap="jobMap">
+        <include refid="selectJob"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryJobByDid" parameterType="Job" resultMap="jobMap">
+        <include refid="selectJob"></include>
+        <where>
+            <choose>
+                <when test="departmentId != null">
+                    AND department_id = #{departmentId}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllJob" parameterType="Job" resultMap="jobMap">
+        <include refid="selectJob"></include>
+    </select>
+
+    <insert id="addJob">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO job
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="departmentId != null">
+                department_id,
+            </if>
+            <if test="jobName != null">
+               job_name,
+            </if>
+            <if test="jobIsDelete != null">
+                job_is_delete,
+            </if>
+            <if test="jobCreateTime != null">
+                job_create_time,
+            </if>
+            <if test="jobModifiedTime != null">
+                job_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="departmentId != null">
+                #{departmentId},
+            </if>
+            <if test="jobName != null">
+                #{jobName},
+            </if>
+            <if test="jobIsDelete != null">
+                #{jobIsDelete},
+            </if>
+            <if test="jobCreateTime != null">
+                #{jobCreateTime},
+            </if>
+            <if test="jobModifiedTime != null">
+                #{jobModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateJob" parameterType="Job">
+        UPDATE JOB
+        <trim prefix="set" suffixOverrides=",">
+            <if test="departmentId != null">
+                department_id = #{departmentId},
+            </if>
+            <if test="jobName != null">
+                job_name = #{jobName},
+            </if>
+            <if test="jobIsDelete != null">
+                job_is_delete = #{jobIsDelete},
+            </if>
+            <if test="jobCreateTime != null">
+                job_create_time = #{jobCreateTime},
+            </if>
+            <if test="jobModifiedTime != null">
+                job_modified_time = #{jobModifiedTime},
+            </if>
+        </trim>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
+    <delete id="deleteJob" parameterType="Job">
+        UPDATE JOB SET JOB_IS_DELETE = 1
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+
+
+</mapper>

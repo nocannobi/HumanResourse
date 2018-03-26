@@ -12,6 +12,7 @@
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <script src="/scripts/jquery-3.0.0.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
+
     <style>
 
         .a{
@@ -36,7 +37,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <form class="form-horizontal" action="/customer/customerLogin.do">
+                    <form class="form-horizontal" method="post" action="/customer/customerLogin.do">
                         <div class="form-group">
                             <h3>用户登录</h3>
                         </div>
@@ -53,6 +54,12 @@
                                 <input class="form-control col-sm-4" type="password" name="customerPassword" >
                             </div>
                             <span id="checkCustomerPassword"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <input type="checkbox" value="on" name="isRemember">
+                            </div>
+                            <label class="control-label col-sm-2">记住密码</label>
                         </div>
                         <div class="form-group">
                             <div class="div1  col-sm-offset-2">
