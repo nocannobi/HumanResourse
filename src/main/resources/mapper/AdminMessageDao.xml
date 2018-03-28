@@ -52,7 +52,7 @@
             <if test="messageIsRecieve != null">
                 message_is_recieve,
             </if>
-            <if test="message_is_delete != null">
+            <if test="messageIsDelete != null">
                 message_is_delete,
             </if>
             <if test="messageCreateTime != null">
@@ -87,7 +87,7 @@
             <if test="messageIsRecieve != null">
                 #{messageIsRecieve},
             </if>
-            <if test="message_is_delete != null">
+            <if test="messageIsDelete != null">
                 #{messageIsDelete},
             </if>
             <if test="messageCreateTime != null">

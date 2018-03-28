@@ -48,7 +48,18 @@
                 <li class="active "><a href="/admin/training.view">培训管理</a></li>
                 <li class="active "><a href="/admin/reward.view">奖惩管理</a></li>
                 <li class="active "><a href="/admin/wage.view">工资管理</a></li>
-                <li class="active "><a href="#">消息管理</a></li>
+                <li class="dropdown">
+                    <div class=""></div>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        消息中心
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">游客消息</a></li>
+                        <li><a href="#">员工消息</a></li>
+                        <li><a href="/admin/addMessage2.view">发送消息</a></li>
+                    </ul>
+                </li>
                 <li class="active "><a href="#">退出</a></li>
             </ul>
         </div>

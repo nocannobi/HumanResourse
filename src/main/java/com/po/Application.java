@@ -5,7 +5,6 @@ import org.omg.PortableInterceptor.INACTIVE;
 import java.sql.Timestamp;
 
 public class Application extends BaseEntity {
-
     public static final Integer IS_INTERVIEW = 1;
     public static final Integer IS_NOT_INTERVIEW = 0;
     public static final Integer IS_PASS_INTERVIEW = 1;
@@ -14,6 +13,7 @@ public class Application extends BaseEntity {
     public static final Integer IS_NOT_VIEW = 0;
 
     private int id;
+    private int customerId;
     private int resumeId;
     private int recruitmentId;
     private Integer isInterview;
@@ -21,6 +21,14 @@ public class Application extends BaseEntity {
     private Integer isView;
     private Timestamp applicationCreateTime;
     private Timestamp applicationModifiedTime;
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
     public int getId() {
         return id;
@@ -90,6 +98,7 @@ public class Application extends BaseEntity {
     public String toString() {
         return "Application{" +
                 "id=" + id +
+                ", customerId=" + customerId +
                 ", resumeId=" + resumeId +
                 ", recruitmentId=" + recruitmentId +
                 ", isInterview=" + isInterview +

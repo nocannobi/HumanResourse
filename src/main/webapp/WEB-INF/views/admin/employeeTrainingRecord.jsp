@@ -119,13 +119,14 @@
 <div class="container">
     <div class="row">
         <form method="post" action="/admin/addEmployee.do">
+            <div class="col-md-8"></div>
             <div class="form-group">
                 <label class="control-label col-sm-2">培训名称：</label>
                 <div class="col-sm-5">
-                    <select id="trainingId" name="trainingId" class="form-control" >
+                    <select id="trainingName" name="trainingName" class="form-control" >
                         <option value="">请选择培训名称</option>
                         <c:forEach items="${sessionScope.trainings}" var="training">
-                            <option value="${training.trainingId}">${training.trainingName}</option>
+                            <option value="${training.trainingName}">${training.trainingName}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -136,7 +137,7 @@
                     <select id="employeeId" name="employeeId" class="form-control" >
                         <option value="">请选择员工</option>
                         <c:forEach items="${sessionScope.employeeDetail}" var="employee">
-                            <option value="${employee.employeeId}">${employee.department}+${employee.job}+${employee.employeeRealName}</option>
+                            <option value="${employee.id}">${employee.id}</option>
                         </c:forEach>
                     </select>
                 </div>

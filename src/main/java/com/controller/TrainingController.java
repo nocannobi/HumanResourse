@@ -1,8 +1,10 @@
 package com.controller;
 
+import com.po.Department;
 import com.po.EmployeeDetail;
 import com.po.Training;
 import com.po.TrainingRecord;
+import com.service.DepartmentService;
 import com.service.EmployeeDetailService;
 import com.service.TrainingRecordService;
 import com.service.TrainingService;
@@ -29,6 +31,9 @@ public class TrainingController {
     @Autowired
     private EmployeeDetailService employeeDetailService;
 
+    @Autowired
+    private DepartmentService departmentService;
+
     @RequestMapping(value = "training.view")
     public String trainingPage(){
         return "admin/training";
@@ -47,13 +52,17 @@ public class TrainingController {
         HttpSession session = request.getSession();
         List<TrainingRecord> trainingRecords = trainingRecordService.queryAllTrainingRecord();
         List<EmployeeDetail> employeeDetails = employeeDetailService.queryAllEmployeeDetail();
+        List<Department> departments = departmentService.queryAllDepartment();
+        session.setAttribute("departments",departments);
         session.setAttribute("trainingRecords",trainingRecords);
         session.setAttribute("employeeDetails", employeeDetails);
         return "admin/employeeTrainingRecord";
     }
 
     @RequestMapping(value = "addEmployee.do")
-    public String addTrainingRecord(@ModelAttribute TrainingRecord trainingRecord, Model model,HttpSession session){
+    public String addTrainingRecord(@ModelAttribute TrainingRecord trainingRecord,String trainingName, Model model,HttpSession session){
+        Training training = trainingService.queryTrainingByName(trainingName);
+        trainingRecord.setTrainingId(training.getId());
         boolean addTrainingRecord = trainingRecordService.addTrainingRecord(trainingRecord);
         if(addTrainingRecord){
            session.setAttribute("trainingRecord", trainingRecord);

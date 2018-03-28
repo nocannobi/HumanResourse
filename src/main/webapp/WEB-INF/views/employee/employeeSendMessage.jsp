@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: lenovo
@@ -32,15 +33,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form class="form-horizontal" method="post" action="">
+            <form class="form-horizontal" method="post" action="/employee/addMessage.do">
                 <div class="form-group">
                     <h3>我的申请</h3>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">收件人：</label>
                     <div class="col-sm-4">
-                        <select name="people" class="form-control">
-                            <option value="管理员">管理员</option>
+                        <select name="adminId" class="form-control">
+                            <c:forEach items="${sessionScope.employees}" var="admin">
+                                <option value="">管理员</option>
+                                <option value="${admin.id}">${admin.id}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

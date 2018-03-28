@@ -47,6 +47,14 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    public Job queryJobByName(String jobName) {
+        if(jobName == null){
+            return null;
+        }
+        return jobDao.queryJobByName(jobName);
+    }
+
+    @Override
     public List<Job> queryJobByDid(Job job) {
         if(job == null){
             return null;

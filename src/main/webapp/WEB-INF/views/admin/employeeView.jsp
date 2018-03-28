@@ -141,6 +141,7 @@
             <th>地址</th>
             <th>部门</th>
             <th>职位</th>
+            <th>基本工资</th>
         </tr>
         </thead>
         <tbody>
@@ -158,6 +159,7 @@
                 <td width="10%">${employee.employeeAddress}</td>
                 <td width="10%">${employee.employeeDepartment}</td>
                 <td width="10%">${employee.employeeJob}</td>
+                <td width="10%">${employee.basicWage}</td>
             </tr>
         </c:forEach>
         </tbody>

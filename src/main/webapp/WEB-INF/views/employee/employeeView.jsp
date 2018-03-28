@@ -27,7 +27,7 @@
                 <li class="active"><a href="/employee/attendance.view">考勤打卡</a></li>
                 <li class="active"><a href="/employee/detailView.view">个人信息</a></li>
                 <li class="active"><a href="/employee/recordView.view">培训记录</a></li>
-                <li class="active"><a href="#">部门信息</a></li>
+                <li class="active"><a href="/employee/department.view">部门信息</a></li>
                 <li class="active"><a href="/employee/rewardView.view">奖惩记录</a></li>
                 <li class="active"><a href="/employee/wageView.view">薪资记录</a></li>
                 <li class="active">
@@ -43,15 +43,16 @@
 </nav>
 <div class="container">
     <div class="row">
-        <form class="form-horizontal">
             <div class="form-group" id="on_work">
-                <button class="btn bg-primary" type="submit" onclick="addWorkTime()">上班打卡</button>
+                <button class="btn bg-primary" type="submit">
+                    <a href="/employee/punchWorkTime.do">上班打卡</a>
+                </button>
             </div>
             <div class="form-group" id="off_work">
-                <input class="hidden" type="time" name="offTime" value="offTime">
-                <button class="btn bg-primary" type="submit">下班打卡</button>
+                <button class="btn bg-primary" type="submit">
+                    <a href="/employee/punchOffTime.do?id=${sessionScope.attendance.id}">下班打卡</a>
+                </button>
             </div>
-        </form>
     </div>
 </div>
 </body>

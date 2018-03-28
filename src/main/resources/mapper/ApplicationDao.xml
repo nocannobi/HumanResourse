@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ApplicationDao">
+    <resultMap id="applicationMap" type="Application">
+        <id column="id" property="id"></id>
+        <result column="customer_id" property="customerId"></result>
+        <result column="resume_id" property="resumeId"></result>
+        <result column="recruitment_id" property="recruitmentId"></result>
+        <result column="is_interview" property="isInterview"></result>
+        <result column="is_view" property="IsView"></result>
+        <result column="application_create_time" property="applicationCreateTime"></result>
+        <result column="application_modified_time" property="applicationModifiedTime"></result>
+    </resultMap>
+
+    <sql id="selectApplication">
+        SELECT * FROM APPLICATION
+    </sql>
+
+    <insert id="addApplication" parameterType="Application">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO application
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="resumeId != null">
+                resume_id,
+            </if>
+            <if test="recruitmentId != null">
+                recruitment_id,
+            </if>
+            <if test="isInterview != null">
+                is_interview,
+            </if>
+            <if test="isPassInterview != null">
+                is_pass_interview,
+            </if>
+            <if test="isView != null">
+                is_view,
+            </if>
+            <if test="applicationCreateTime != null">
+                application_create_time,
+            </if>
+            <if test="applicationModifiedTime != null">
+                application_modified_time,
+            </if>
+        </trim>
+        <trim prefix=" VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="customerId != null">
+                #{customerId},
+            </if>
+            <if test="resumeId != null">
+                #{resumeId},
+            </if>
+            <if test="recruitmentId != null">
+                #{recruitmentId},
+            </if>
+            <if test="isInterview != null">
+                #{isInterview},
+            </if>
+            <if test="isPassInterview != null">
+                #{isPassInterview},
+            </if>
+            <if test="isView != null">
+                #{isView},
+            </if>
+            <if test="applicationCreateTime != null">
+                #{applicationCreateTime},
+            </if>
+            <if test="applicationModifiedTime != null">
+                #{applicationModifiedTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateApplication" parameterType="Application">
+        UPDATE APPLICATION
+        <trim prefix="set" suffixOverrides=",">
+            <if test="customerId != null">
+                customer_id = #{customerId},
+            </if>
+            <if test="resumeId != null">
+                resume_id = #{resumeId},
+            </if>
+            <if test="recruitmentId != null">
+                recruitment_id = #{recruitmentId},
+            </if>
+            <if test="isInterview != null">
+                is_interview = #{isInterview},
+            </if>
+            <if test="isPassInterview != null">
+                is_pass_interview = #{isPassInterview},
+            </if>
+            <if test="isView != null">
+                is_view = #{isView},
+            </if>
+            <if test="applicationCreateTime != null">
+                application_create_time = #{applicationCreateTime},
+            </if>
+            <if test="applicationModifiedTime != null">
+                application_modified_time = #{applicationModifiedTime},
+            </if>
+        </trim>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
+    <select id="queryApplicationById" parameterType="Application" resultMap="applicationMap">
+        <include refid="selectApplication"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryApplicationByCid" parameterType="Customer" resultMap="applicationMap">
+        <include refid="selectApplication"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND customer_id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryAllApplication" resultMap="applicationMap">
+        <include refid="selectApplication"></include>
+    </select>
+</mapper>

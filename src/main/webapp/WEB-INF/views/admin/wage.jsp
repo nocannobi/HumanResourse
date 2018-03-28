@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: lenovo
@@ -36,25 +37,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-11">
-            <form class="form-horizontal" method="post" action="" >
+            <form class="form-horizontal" method="post" action="/admin/addWage.do" >
                 <div class="form-group">
                     <label class="control-label col-sm-2">员工id：</label>
                     <div class="col-sm-4">
+                        <select id="employeeId" name="employeeId" class="form-control">
+                            <option value="">请选择员工编号</option>
+                            <c:forEach items="${sessionScope.employees}" var="employee">
+                                <option value="${employee.id}">${employee.id}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
 
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">基本工资：</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" name="commission">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">社&nbsp;&nbsp;保：</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" name="socialInsurance">
-                    </div>
-                </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">社保金额：</label>
                     <div class="col-sm-4">
@@ -63,6 +58,12 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">其他金额：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="socialInsurance">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">总金额：</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" name="rewardPunishment">
                     </div>

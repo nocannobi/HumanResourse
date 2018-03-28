@@ -21,7 +21,7 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">职位搜索</a></li>
+                <li class="active"><a href="/customer/queryRecruitment.view">职位搜索</a></li>
                 <li class="active"><a href="#">投递信息</a></li>
                 <li class="active"><a href="/customer/resumeView.view">查看简历</a></li>
                 <li class="active"><a href="#">消息中心</a></li>

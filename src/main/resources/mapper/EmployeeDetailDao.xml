@@ -15,7 +15,10 @@
             <result column="employee_phone" property="employeePhone"></result>
             <result column="employee_address" property="employeeAddress"></result>
             <result column="employee_department" property="employeeDepartment"></result>
+            <result column="basic_wage" property="basicWage"></result>
             <result column="employee_job" property="employeeJob"></result>
+            <result column="employee_is_work" property="employeeIsWork"></result>
+            <result column="job_state" property="jobState"></result>
             <result column="employee_detail_create_time" property="employeeDetailCreateTime"></result>
             <result column="employee_detail_modified_time" property="employeeDetailModifiedTime"></result>
        </resultMap>
@@ -64,8 +67,17 @@
                 <if test="employeeDepartment != null">
                     employee_department,
                 </if>
+                <if test="basicWage != null">
+                    basic_wage,
+                </if>
                 <if test="employeeJob != null">
                     employee_job,
+                </if>
+                <if test="employeeIsWork != null">
+                    employee_is_work,
+                </if>
+                <if test="jobState != null">
+                    job_state,
                 </if>
                 <if test="employeeDetailCreateTime != null">
                     employeeDetail_create_time,
@@ -108,8 +120,17 @@
                 <if test="employeeDepartment != null">
                     #{employeeDepartment},
                 </if>
+                <if test="basicWage != null">
+                    #{basicWage},
+                </if>
                 <if test="employeeJob != null">
                     #{employeeJob},
+                </if>
+                <if test="employeeIsWork != null">
+                    #{employeeIsWork},
+                </if>
+                <if test="jobState != null">
+                    #{jobState},
                 </if>
                 <if test="employeeDetailCreateTime != null">
                     #{employeeDetailCreateTime},
@@ -153,8 +174,17 @@
                 <if test="employeeDepartment != null">
                     employee_department = #{employeeDepartment},
                 </if>
+                <if test="basicWage != null">
+                    basic_wage = #{basicWage},
+                </if>
                 <if test="employeeJob != null">
                     employee_job = #{employeeJob},
+                </if>
+                <if test="employeeIsWork != null">
+                    employee_is_work = #{employeeIsWork},
+                </if>
+                <if test="jobState != null">
+                    job_state = #{jobState},
                 </if>
                 <if test="employeeDetailCreateTime != null">
                     employeeDetail_create_time = #{employeeDetailCreateTime},

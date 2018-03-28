@@ -1,8 +1,14 @@
 package com.po;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class EmployeeDetail extends BaseEntity{
+    public static final Integer EMPLOYEE_IS_WORK = 1;
+    public static final Integer EMPLOYEE_IS_NOT_WORK = 0;
+    public static final Integer JOB_FULL_TIME = 1;
+    public static final Integer JOB_INTERNSHIP = 0;
+
     private int id;
     private int employeeId;
     private String employeeRealName;
@@ -15,8 +21,35 @@ public class EmployeeDetail extends BaseEntity{
     private String employeeAddress;
     private String employeeDepartment;
     private String employeeJob;
+    private Integer employeeIsWork;
+    private Integer jobState;
+    private BigDecimal basicWage;
     private Timestamp employeeDetailCreateTime;
     private Timestamp employeeDetailModifiedTime;
+
+    public static Integer getEmployeeIsWork() {
+        return EMPLOYEE_IS_WORK;
+    }
+
+    public void setEmployeeIsWork(Integer employeeIsWork) {
+        this.employeeIsWork = employeeIsWork;
+    }
+
+    public Integer getJobState() {
+        return jobState;
+    }
+
+    public void setJobState(Integer jobState) {
+        this.jobState = jobState;
+    }
+
+    public BigDecimal getBasicWage() {
+        return basicWage;
+    }
+
+    public void setBasicWage(BigDecimal basicWage) {
+        this.basicWage = basicWage;
+    }
 
     public String getEmployeeDepartment() {
         return employeeDepartment;
@@ -145,6 +178,9 @@ public class EmployeeDetail extends BaseEntity{
                 ", employeeAddress='" + employeeAddress + '\'' +
                 ", employeeDepartment='" + employeeDepartment + '\'' +
                 ", employeeJob='" + employeeJob + '\'' +
+                ", employeeIsWork=" + employeeIsWork +
+                ", jobState=" + jobState +
+                ", basicWage=" + basicWage +
                 ", employeeDetailCreateTime=" + employeeDetailCreateTime +
                 ", employeeDetailModifiedTime=" + employeeDetailModifiedTime +
                 '}';

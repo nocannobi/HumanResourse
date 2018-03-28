@@ -22,20 +22,15 @@ public class AttendanceController {
         return "employee/attendance";
     }
 
-    @RequestMapping(value = "addAttendance.do")
+    @RequestMapping(value = "punchWorkTime.do")
     public String addAttendance(@ModelAttribute Attendance attendance, HttpSession session, Model model){
-        System.out.println("55:" + attendance);
         Object employee = session.getAttribute("employee");
         if(employee instanceof Employee){
             int id = ((Employee) employee).getId();
             attendance.setEmployeeId(id);
-            boolean addAttendance = attendanceService.updateAttendance(attendance);
+            boolean addAttendance = attendanceService.addAttendance(attendance);
             if(addAttendance){
                 session.setAttribute("attendance",attendance);
-                attendance = (Attendance) session.getAttribute("attendance");
-                Timestamp punchWorkTime = attendance.getPunchWorkTime();
-                /*Timestamp workTime = attendance.getWorkTime();*/
-                String s = punchWorkTime.toString();
                 model.addAttribute("info","签到成功");
                 return "employee/employeeView";
             }
@@ -44,4 +39,25 @@ public class AttendanceController {
         }
         return "employee/employeeView";
     }
+
+    @RequestMapping(value = "punchOffTime.do")
+    public String updateAttendance(@ModelAttribute Attendance attendance, HttpSession session, Model model){
+        Timestamp punchOffTime = new Timestamp(System.currentTimeMillis());
+        attendance.setPunchOffTime(punchOffTime);
+        Object employee = session.getAttribute("employee");
+        if(employee instanceof Employee) {
+            int id = ((Employee) employee).getId();
+            attendance.setEmployeeId(id);
+            boolean addAttendance = attendanceService.updateAttendance(attendance);
+            if (addAttendance) {
+                session.setAttribute("attendance", attendance);
+                model.addAttribute("info", "签到成功");
+                return "employee/employeeView";
+            }
+        }
+            model.addAttribute("info","签到失败");
+            return "employee/employeeView";
+    }
+
+
 }

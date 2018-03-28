@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: lenovo
-  Date: 2018/3/26
-  Time: 21:29
+  Date: 2018/3/27
+  Time: 12:57
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>个人信息</title>
+    <title>招聘详情</title>
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <script src="/scripts/jquery-3.0.0.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
@@ -18,75 +18,68 @@
     <div class="row">
         <form class="form-horizontal">
             <div class="form-group">
-                <label class="control-label col-sm-2">员工编号：</label>
+                <label class="control-label col-sm-2">发布者：</label>
                 <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeeId}
+                    ${sessionScope.recruitment.adminId}
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">姓&nbsp;&nbsp;名:</label>
+                <label class="control-label col-sm-2">公司名：</label>
                 <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeeRealName}
+                    ${sessionScope.recruitment.company}
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">年&nbsp;&nbsp;龄:</label>
+                <label class="control-label col-sm-2">职位名称:</label>
                 <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeeAge}
+                    ${sessionScope.recruitment.job}
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">性&nbsp;&nbsp;别：</label>
+                <label class="control-label col-sm-2">招工数量:</label>
                 <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeeSex}
+                    ${sessionScope.recruitment.jobNumber}
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">身份证:</label>
+                <label class="control-label col-sm-2">薪资:</label>
                 <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeeIdCard}
+                    ${sessionScope.recruitment.salary}
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">邮&nbsp;&nbsp;箱:</label>
+                <label class="control-label col-sm-2">职位描述：</label>
                 <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeeEmail}
+                    ${sessionScope.recruitment.jobContent}
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">手&nbsp;&nbsp;机:</label>
+                <label class="control-label col-sm-2">公司详情:</label>
                 <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeePhone}
+                    ${sessionScope.recruitment.companyDetail}
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">地&nbsp;&nbsp;址:</label>
+                <label class="control-label col-sm-2">公司地址:</label>
                 <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeeAddress}
+                    ${sessionScope.recruitment.companyAddress}
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">部&nbsp;&nbsp;门：</label>
+                <label class="control-label col-sm-2">发布时间:</label>
                 <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeeDepartment}
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">职位</label>
-                <div class="col-sm-4">
-                    ${sessionScope.employeeDetail.employeeJob}
+                    ${sessionScope.recruitment.recruitmentCreateTime}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-3 col-sm-offset-1">
                     <button type="submit">
-                        <a href="/employee/employeeView.view">返回</a>
+                        <a href="/admin/recruitmentView.view">返回</a>
                     </button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-</body>
 </body>
 </html>

@@ -128,6 +128,7 @@
             <th>公司名</th>
             <th>薪资</th>
             <th>发布时间</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -138,6 +139,11 @@
                 <td width="10%">${recruitments.company}</td>
                 <td width="10%">${recruitments.salary}</td>
                 <td width="10%">${recruitments.recruitmentCreateTime}</td>
+                    <td width="10%">
+                        <button type="submit" value="招聘详情">
+                        <a href="/admin/queryRecruitment.view?id=${recruitments.id}">adhkasjhdk</a>
+                    </button>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

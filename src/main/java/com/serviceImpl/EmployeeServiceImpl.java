@@ -2,6 +2,7 @@ package com.serviceImpl;
 
 import com.dao.EmployeeDao;
 import com.po.Employee;
+import com.po.Job;
 import com.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,5 +79,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> queryAllEmployee() {
         return employeeDao.queryAllEmployee();
+    }
+
+    @Override
+    public List<Employee> queryAllAdmin() {
+        return employeeDao.queryAllAdmin();
+    }
+
+    @Override
+    public List<Employee> queryEmployeeByJid(Job job) {
+        if(job == null){
+            return null;
+        }
+        return employeeDao.queryEmployeeByJid(job);
     }
 }

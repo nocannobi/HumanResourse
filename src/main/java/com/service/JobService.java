@@ -9,6 +9,7 @@ public interface JobService {
     boolean updateJob(Job job);
     boolean deleteJob(Job job);
     Job queryJobById(Job job);
+    Job queryJobByName(String jobName);
     List<Job> queryJobByDid(Job job);
     List<Job> queryAllJob();
 }

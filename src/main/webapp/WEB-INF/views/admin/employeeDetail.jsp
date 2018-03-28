@@ -18,11 +18,11 @@
             $.ajax({
                 type:"post",
                 url:"/admin/selectJob.do",
-                data:"departmentId=" + $("#department").val(),
+                data:"departmentName=" + $("#department").val(),
                 success:function (msg) {
                     var arr = eval(msg);
                     if(arr.length != 0){
-                        var c= "<select name='job' id='job' class='form-control' >";
+                        var c= "<select name='employeeJob' id='job' class='form-control' >";
                         c += "<option value=''>选择职位</option>"
                         for(var i=0; i<arr.length; i++){
                             var job = arr[i].jobName;
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">员工编号：</label>
                     <div class="col-sm-4">
-                        <select id="employeeId" name="employeeId" class="form-control" onchange="selectDepartment()">
+                        <select id="employeeId" name="employeeId" class="form-control" >
                             <option value="">请选择员工编号</option>
                             <c:forEach items="${sessionScope.employees}" var="employee">
                                 <option value="${employee.id}">${employee.id}</option>
@@ -56,20 +56,14 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">姓&nbsp;&nbsp;名:</label>
                     <div class="col-sm-4">
-                        <input class="form-control" name="employeeRealName">
+                        <input class="form-control" type="text" name="employeeRealName">
                     </div>
                     <span id="checkRealName"></span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">头&nbsp;&nbsp;像:</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" name="headImage">
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="control-label col-sm-2">年&nbsp;&nbsp;龄:</label>
                     <div class="col-sm-4">
-                        <input class="form-control" name="employeeAge">
+                        <input class="form-control" type="text" name="employeeAge">
                     </div>
                 </div>
                 <div class="form-group">
@@ -85,7 +79,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">身份证:</label>
                     <div class="col-sm-4">
-                        <input class="form-control" name="employeeIdCard">
+                        <input class="form-control" type="text" name="employeeIdCard">
                     </div>
                 </div>
                 <div class="form-group">
@@ -97,19 +91,19 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">手&nbsp;&nbsp;机:</label>
                     <div class="col-sm-4">
-                        <input class="form-control" name="employeePhone">
+                        <input class="form-control" type="text" name="employeePhone">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">地&nbsp;&nbsp;址:</label>
                     <div class="col-sm-4">
-                        <input class="form-control" name="employeeAddress">
+                        <input class="form-control" type="text" name="employeeAddress">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">部&nbsp;&nbsp;门：</label>
                     <div class="col-sm-4">
-                        <select id="department" name="department" class="form-control" onchange="selectDepartment()">
+                        <select id="department" name="employeeDepartment" class="form-control" onchange="selectDepartment()">
                             <option value="">请选择部门</option>
                             <c:forEach items="${sessionScope.departments}" var="department">
                                 <option value="${department.departmentName}">${department.departmentName}</option>
@@ -119,8 +113,24 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2"></label>
-                    <div id="content" class="col-sm-5">
+                    <div id="content" class="col-sm-4">
 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">工作类型：</label>
+                    <div class="col-sm-4">
+                        <select name="jobState" class="form-control">
+                            <option value="">工作类型</option>
+                            <option value="0">实习</option>
+                            <option value="1">全职</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">基本工资:</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" name="basicWage">
                     </div>
                 </div>
                 <div class="form-group">
@@ -129,10 +139,9 @@
                     </div>
                     <div class="col-sm-3 col-sm-offset-1">
                         <button type="submit">
-                            <a href="/employee/employeeView.view">返回</a>
+                            <a href="/admin/adminView.view">返回</a>
                         </button>
                     </div>
-
                 </div>
             </form>
         </div>

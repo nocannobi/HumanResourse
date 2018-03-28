@@ -1,9 +1,11 @@
 package com.controller;
 
 import com.po.Attendance;
+import com.po.Customer;
 import com.po.Employee;
 import com.po.EmployeeDetail;
 import com.service.AttendanceService;
+import com.service.CustomerService;
 import com.service.EmployeeDetailService;
 import com.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,6 +26,9 @@ public class AdminController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private CustomerService customerService;
 
     @Autowired
     private EmployeeDetailService employeeDetailService;
@@ -45,9 +52,7 @@ public class AdminController {
     @RequestMapping(value = "adminLogin.do")
     public String adminLogin(@ModelAttribute Employee employee, HttpSession session, Model model){
         employee.setEmployeeIsAdmin(1);
-        System.out.println("1" + employee);
         employee = employeeService.queryAdminByName(employee);
-        System.out.println("2" + employee);
         if(employee != null){
            session.setAttribute("employee", employee);
            return "admin/adminView";
@@ -63,4 +68,21 @@ public class AdminController {
          session.setAttribute("employeeDetails",employeeDetails);
          return "admin/employeeView";
      }
+
+     @RequestMapping(value = "selectPeople.do")
+     public @ResponseBody <T> List people(String people, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if(people.equals("customer")){
+            List<Customer> customers = customerService.queryAllCustomer();
+            session.setAttribute("customers",customers);
+            return customers;
+        }
+        if(people.equals("employee")){
+            List<Employee> employees = employeeService.queryAllEmployee();
+            session.setAttribute("employees",employees);
+            return employees;
+        }
+        return null;
+     }
+
 }

@@ -2,10 +2,11 @@ package com.controller;
 
 
 import com.po.Customer;
+import com.po.Recruitment;
 import com.po.Resume;
 import com.service.CustomerService;
+import com.service.RecruitmentService;
 import com.service.ResumeService;
-import com.util.RegularExpressCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/customer")
@@ -27,6 +29,8 @@ public class CustomerController {
     @Autowired
     private ResumeService resumeService;
 
+    @Autowired
+    private RecruitmentService recruitmentService;
 
     @RequestMapping(value = "customerRegister.view")
     public String register(){
@@ -70,7 +74,6 @@ public class CustomerController {
 
     @RequestMapping(value = "customerLogin.do")
     public String customerLogin(HttpServletResponse response, String isRemember,Customer customer, HttpSession session , Model model){
-
         customer = customerService.queryCustomerByCustomer(customer);
         if (customer == null){
             model.addAttribute("info","登录失败");
@@ -121,6 +124,19 @@ public class CustomerController {
         model.addAttribute("info","注册失败");
         return "customer/customerRegister";
     }
+
+    @RequestMapping(value = "queryRecruitment.view")
+    public String queryRecruitment(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        List<Recruitment> recruitments = recruitmentService.queryAllRecruitment();
+        session.setAttribute("recruitments",recruitments);
+        return "customer/recruitment";
+    }
+
+
+
+
+
 
     @RequestMapping(value = "checkName.do")
     @ResponseBody

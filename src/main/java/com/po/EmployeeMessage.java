@@ -21,6 +21,7 @@ public class EmployeeMessage extends BaseEntity {
     private Timestamp messageCreateTime;
     private Timestamp messageModifiedTime;
 
+
     public Integer getMessageIsDelete() {
         return messageIsDelete;
     }

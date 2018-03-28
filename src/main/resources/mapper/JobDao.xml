@@ -30,6 +30,20 @@
         </where>
     </select>
 
+    <select id="queryJobByName" resultMap="jobMap">
+        <include refid="selectJob"></include>
+        <where>
+            <choose>
+                <when test="value != null">
+                    AND job_name = #{value}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
     <select id="queryJobByDid" parameterType="Job" resultMap="jobMap">
         <include refid="selectJob"></include>
         <where>

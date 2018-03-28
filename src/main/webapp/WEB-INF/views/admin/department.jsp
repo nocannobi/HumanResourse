@@ -40,7 +40,7 @@
             <a class="navbar-brand" href="#">部门管理</a>
         </div>
         <div>
-            <a class="navbar-text navbar-right" href="#">历史添加记录</a>
+            <a class="navbar-text navbar-right" href="/admin/departmentDetail.view">查看部门信息</a>
         </div>
     </div>
 </nav>
@@ -66,15 +66,15 @@
                     <div class="div1 col-sm-offset-1">
                         <input class="btn btn-primary" type="submit" value="保存">
                     </div>
-                    <div class="div1  col-sm-offset-2">
-                        <button class="btn btn-primary">
-                            <a class="a" href="#">返回</a>
-                        </button>
-                    </div>
                 </div>
             </form>
         </div>
     </div>
+</div>
+<div class="div1  col-sm-offset-2">
+    <button class="btn btn-primary">
+        <a class="a" href="/admin/adminView.view">返回</a>
+    </button>
 </div>
 </body>
 </html>

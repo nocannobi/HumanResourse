@@ -39,11 +39,11 @@ public class RecruitmentServiceImpl implements RecruitmentService {
     }
 
     @Override
-    public Recruitment queryRecruitment(Recruitment recruitment) {
+    public Recruitment queryRecruitmentById(Recruitment recruitment) {
         if(recruitment == null){
             return null;
         }
-        return recruitmentDao.queryRecruitment(recruitment);
+        return recruitmentDao.queryRecruitmentById(recruitment);
     }
 
     @Override

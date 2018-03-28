@@ -2,6 +2,7 @@ package com.service;
 
 
 import com.po.Employee;
+import com.po.Job;
 
 import java.util.List;
 
@@ -16,5 +17,7 @@ public interface EmployeeService {
     Employee queryEmployeeById(Employee employee);
     List<Employee> queryAllEmployeeByDetail();
     List<Employee> queryAllEmployee();
+    List<Employee> queryAllAdmin();
+    List<Employee> queryEmployeeByJid(Job job);
 
 }

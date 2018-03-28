@@ -12,6 +12,28 @@
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <script src="/scripts/jquery-3.0.0.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
+    <script>
+        function selectType() {
+            $.ajax({
+                type:"post",
+                url:"/admin/selectPeople.do",
+                data:"people=" + $("#people").val(),
+                success:function (msg) {
+                    var arr = eval(msg);
+                    if(arr.length != 0){
+                        var c= "<select name='id' id='id' class='form-control' onchange='selectEmployee()' >";
+                        c += "<option value=''>收件人id</option>"
+                        for(var i=0; i<arr.length; i++){
+                            var id = arr[i].id;
+                            c += "<option value='"+id+"'>"+ id + "</option>";
+
+                        }
+                        $("#content").html(c);
+                    }
+                }
+            })
+        }
+    </script>
     <style>
         .container{
             margin-top: 5%;
@@ -32,17 +54,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form class="form-horizontal" method="post" action="">
+            <form class="form-horizontal" method="post" action="/admin/addMessage1.do">
                 <div class="form-group">
                     <h3>我的申请</h3>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">收件人：</label>
                     <div class="col-sm-4">
-                        <select name="people" class="form-control">
-                            <option value="游客">游客</option>
-                            <option value="员工">员工</option>
+                        <select id="people" name="people" class="form-control" onchange="selectType()">
+                            <option value="customer">游客</option>
+                            <option value="employee">员工</option>
                         </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2"></label>
+                    <div id="content" class="col-sm-4">
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,7 +92,7 @@
                     </div>
                     <div class="div1 col-sm-offset-1">
                         <button class="btn btn-primary">
-                            <a href="/customer/customerLogin.view">返回</a>
+                            <a href="/admin/adminView.view">返回</a>
                         </button>
                     </div>
                 </div>

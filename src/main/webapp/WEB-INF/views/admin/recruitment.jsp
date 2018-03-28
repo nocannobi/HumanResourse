@@ -69,6 +69,7 @@
     <div class="row">
         <div class="col-md-8">
             <form class="form-horizontal" name="form1" method="post" action="/admin/recruitment.do">
+                <input type="hidden" name="adminId" value="${sessionScope.employee.id}">
                 <div class="form-group">
                     <label class="control-label col-sm-2">公&nbsp;&nbsp;司：</label>
                     <div class="col-sm-5">
@@ -114,6 +115,12 @@
                     <label class="control-label col-sm-2">工作描述：</label>
                     <div class="col-sm-5">
                         <textarea cols="40px" rows="5px" name="jobContent"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">公司详情：</label>
+                    <div class="col-sm-5">
+                        <textarea cols="40px" rows="5px" name="jobDetail"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

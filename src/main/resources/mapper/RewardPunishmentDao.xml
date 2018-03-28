@@ -18,6 +18,7 @@
     </sql>
 
     <insert id="addRewardPunishment" parameterType="RewardPunishment">
+
         <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
             SELECT HUMAN_RESOURSE_SEQ.nextval FROM dual
         </selectKey>
@@ -36,7 +37,7 @@
             <if test="rewardPunishmentConn != null">
                 reward_punishment_conn,
             </if>
-            <if test="punchWorkTime != null">
+            <if test="isRewardPunishment != null">
                 is_reward_punishment,
             </if>
             <if test="createTime != null">

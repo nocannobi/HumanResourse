@@ -3,9 +3,11 @@ package com.controller;
 import com.po.Department;
 import com.po.Employee;
 import com.po.EmployeeDetail;
+import com.po.Job;
 import com.service.DepartmentService;
 import com.service.EmployeeDetailService;
 import com.service.EmployeeService;
+import com.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,8 @@ public class EmployeeDetailController {
     @Autowired
     private EmployeeDetailService employeeDetailService;
 
+    @Autowired
+    private JobService jobService;
 
     @RequestMapping(value = "employeeDetail.view")
     public String employeeDetailPage(HttpServletRequest request){
@@ -45,13 +49,20 @@ public class EmployeeDetailController {
             return "admin/employeeDetail";
         }
         return "admin/employeeView";
-
-
     }
 
     @RequestMapping(value = "update.do")
-    public String updateDetail(@ModelAttribute EmployeeDetail employeeDetail, HttpSession session,Model model){
+    public String updateDetail(@ModelAttribute EmployeeDetail employeeDetail,Employee employee, Job job, HttpSession session, Model model){
+        System.out.println("添加之前："+ employeeDetail);
         boolean addEmployeeDetail = employeeDetailService.addEmployeeDetail(employeeDetail);
+        System.out.println("添加之后："+ employeeDetail);
+        String employeeJob = employeeDetail.getEmployeeJob();
+        int employeeId = employeeDetail.getEmployeeId();
+        job = jobService.queryJobByName(employeeJob);
+        employee.setId(employeeId);
+        employee.setJobId(job.getId());
+        employee.setDetailIsWrite(1);
+        employeeService.updateEmployee(employee);
         if(addEmployeeDetail){
             session.setAttribute("employeeDetail",employeeDetail);
             model.addAttribute("info","保存成功");

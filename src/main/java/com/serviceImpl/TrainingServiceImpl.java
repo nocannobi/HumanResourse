@@ -47,6 +47,13 @@ public class TrainingServiceImpl implements TrainingService {
         return trainingDao.queryTrainingById(training);
     }
 
+    @Override
+    public Training queryTrainingByName(String trainingName) {
+        if(trainingName == null){
+            return null;
+        }
+        return trainingDao.queryTrainingByName(trainingName);
+    }
 
 
     @Override

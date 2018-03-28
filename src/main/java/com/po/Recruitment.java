@@ -10,6 +10,7 @@ public class Recruitment extends BaseEntity{
     private int id;
     private int adminId;
     private String company;
+    private String companyDetail;
     private String department;
     private String job;
     private String jobNumber;
@@ -19,6 +20,14 @@ public class Recruitment extends BaseEntity{
     private Integer recruitmentIsDelete;
     private Timestamp recruitmentCreateTime;
     private Timestamp recruitmentModifiedTime;
+
+    public String getCompanyDetail() {
+        return companyDetail;
+    }
+
+    public void setCompanyDetail(String companyDetail) {
+        this.companyDetail = companyDetail;
+    }
 
     public String getDepartment() {
         return department;
@@ -122,6 +131,7 @@ public class Recruitment extends BaseEntity{
                 "id=" + id +
                 ", adminId=" + adminId +
                 ", company='" + company + '\'' +
+                ", companyDetail='" + companyDetail + '\'' +
                 ", department='" + department + '\'' +
                 ", job='" + job + '\'' +
                 ", jobNumber='" + jobNumber + '\'' +

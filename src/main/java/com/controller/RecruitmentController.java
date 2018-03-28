@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.po.Department;
+import com.po.Employee;
 import com.po.Job;
 import com.po.Recruitment;
 import com.service.DepartmentService;
@@ -29,6 +30,15 @@ public class RecruitmentController {
 
     @Autowired
     private JobService jobService;
+
+    @RequestMapping(value = "queryRecruitment.view")
+    public String queryRecruitment(@ModelAttribute Recruitment recruitment,HttpSession session,String id){
+        recruitment.setId(Integer.valueOf(id));
+        System.out.println("查询："+recruitment);
+        recruitment = recruitmentService.queryRecruitmentById(recruitment);
+        session.setAttribute("recruitment",recruitment);
+        return "admin/recruitmentDetail";
+    }
 
     @RequestMapping(value = "recruitmentView.view")
     public String recruitmentViewPage(HttpServletRequest request){
@@ -60,7 +70,6 @@ public class RecruitmentController {
         HttpSession session = request.getSession();
         List<Job> jobs = new ArrayList<>();
         Department department = departmentService.queryDepartmentByName(departmentName);
-        System.out.println("00:"+department);
         if(department == null){
             return null;
         }else {

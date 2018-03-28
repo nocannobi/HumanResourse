@@ -9,6 +9,7 @@ public interface TrainingDao {
     boolean updateTraining(Training training);
     boolean deleteTraining(Training training);
     Training queryTrainingById(Training training);
+    Training queryTrainingByName(String trainingName);
     List<Training> queryAllTraining();
 
 }

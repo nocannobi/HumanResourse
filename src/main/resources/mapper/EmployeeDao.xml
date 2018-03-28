@@ -8,20 +8,17 @@
         <result column="job_id" property="jobId"></result>
         <result column="employee_name" property="employeeName"></result>
         <result column="employee_password" property="employeePassword"></result>
-        <result column="basic_wage" property="basicWage"></result>
-        <result column="employee_is_work" property="employeeIsWork"></result>
-        <result column="job_state" property="jobState"></result>
         <result column="detail_is_write" property="detailIsWrite"></result>
         <result column="employee_login_time" property="employeeLoginTime"></result>
         <result column="employee_create_time" property="employeeCreateTime"></result>
         <result column="employee_modified_time" property="employeeModifiedTime"></result>
-<!--
-        <association property="employeeDetail" column="id" select="com.dao.EmployeeDetailDao.queryEmployeeDetailByEid"></association>
--->
+
     </resultMap>
+
     <sql id="selectEmployee">
         SELECT * FROM employee
     </sql>
+
     <select id="queryEmployeeByEmployee" parameterType="Employee" resultMap="employeeMap">
         <include refid="selectEmployee"></include>
         <where>
@@ -78,13 +75,35 @@
         </where>
     </select>
 
-    <select id="queryAllEmployee" resultMap="employeeMap">
+
+    <select id="queryEmployeeByJid" parameterType="Job" resultMap="employeeMap">
         <include refid="selectEmployee"></include>
+        <where>
+            <choose>
+                <when test="id != null">
+                    AND job_id #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
     </select>
 
     <select id="queryAllEmployeeByDetail"  resultMap="employeeMap">
         <include refid="selectEmployee"></include>
         WHERE detail_is_write = 0
+    </select>
+
+    <select id="queryAllEmployee"  resultMap="employeeMap">
+        <include refid="selectEmployee"></include>
+    </select>
+
+    <select id="queryAllAdmin"  resultMap="employeeMap">
+        <include refid="selectEmployee"></include>
+        <where>
+            employee_is_admin = 1
+        </where>
     </select>
 
     <insert id="addEmployee" parameterType="Employee">
@@ -106,17 +125,8 @@
             <if test="employeePassword != null">
                 employee_password,
             </if>
-            <if test="basicWage != null">
-                basic_wage,
-            </if>
             <if test="employeeIsAdmin != null">
                 employee_is_admin,
-            </if>
-            <if test="employeeIsWork != null">
-                employee_is_work,
-            </if>
-            <if test="jobState != null">
-                job_state,
             </if>
             <if test="detailIsWrite != null">
                 detail_is_write,
@@ -144,17 +154,8 @@
             <if test="employeePassword != null">
                 #{employeePassword},
             </if>
-            <if test="basicWage != null">
-                #{basicWage},
-            </if>
             <if test="employeeIsAdmin != null">
                 #{employeeIsAdmin},
-            </if>
-            <if test="employeeIsWork != null">
-                #{employeeIsWork},
-            </if>
-            <if test="jobState != null">
-                #{jobState},
             </if>
             <if test="detailIsWrite != null">
                 #{detailIsWrite},
@@ -183,17 +184,8 @@
             <if test="employeePassword != null">
                 employee_password = #{employeePassword},
             </if>
-            <if test="basicWage != null">
-                basic_wage = #{basicWage},
-            </if>
             <if test="employeeIsAdmin != null">
                 employee_is_admin = #{employeeIsAdmin},
-            </if>
-            <if test="employeeIsWork != null">
-                employee_is_work = #{employeeIsWork},
-            </if>
-            <if test="jobState != null">
-               job_state =  #{jobState},
             </if>
             <if test="detailIsWrite != null">
                 detail_is_write = #{detailIsWrite},

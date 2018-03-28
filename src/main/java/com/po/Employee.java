@@ -1,15 +1,8 @@
 package com.po;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Employee extends BaseEntity{
-    public static final Integer EMPLOYEE_IS_WORK = 1;
-    public static final Integer EMPLOYEE_IS_NOT_WORK = 0;
-    public static final Integer JOB_FULL_TIME = 1;
-    public static final Integer JOB_INTERNSHIP = 0;
-    public static final Integer EMPLOYEE_IS_RETIRED = 0;
-    public static final Integer EMPLOYEE_IS_NOT_RETIRED = 1;
     public static final Integer EMPLOYEE_IS_ADMIN = 1;
     public static final Integer EMPLOYEE_IS_NOT_ADMIN = 0;
     public static final Integer DETAIL_IS_WRITE = 1;
@@ -19,10 +12,7 @@ public class Employee extends BaseEntity{
     private int jobId;
     private String EmployeeName;
     private String EmployeePassword;
-    private BigDecimal basicWage;
     private Integer employeeIsAdmin;
-    private Integer employeeIsWork;
-    private Integer jobState;
     private Integer detailIsWrite;
     private Timestamp employeeLoginTime;
     private Timestamp employeeCreateTime;
@@ -58,30 +48,6 @@ public class Employee extends BaseEntity{
 
     public void setEmployeePassword(String employeePassword) {
         EmployeePassword = employeePassword;
-    }
-
-    public BigDecimal getBasicWage() {
-        return basicWage;
-    }
-
-    public void setBasicWage(BigDecimal basicWage) {
-        this.basicWage = basicWage;
-    }
-
-    public Integer getEmployeeIsWork() {
-        return employeeIsWork;
-    }
-
-    public void setEmployeeIsWork(Integer employeeIsWork) {
-        this.employeeIsWork = employeeIsWork;
-    }
-
-    public Integer getJobState() {
-        return jobState;
-    }
-
-    public void setJobState(Integer jobState) {
-        this.jobState = jobState;
     }
 
     public Integer getDetailIsWrite() {
@@ -131,10 +97,7 @@ public class Employee extends BaseEntity{
                 ", jobId=" + jobId +
                 ", EmployeeName='" + EmployeeName + '\'' +
                 ", EmployeePassword='" + EmployeePassword + '\'' +
-                ", basicWage=" + basicWage +
                 ", employeeIsAdmin=" + employeeIsAdmin +
-                ", employeeIsWork=" + employeeIsWork +
-                ", jobState=" + jobState +
                 ", detailIsWrite=" + detailIsWrite +
                 ", employeeLoginTime=" + employeeLoginTime +
                 ", employeeCreateTime=" + employeeCreateTime +

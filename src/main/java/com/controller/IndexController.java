@@ -19,7 +19,7 @@ public class IndexController {
 
     @RequestMapping(value = "")
     public String indexPage(){
-        return "admin/adminLogin";
+      return "admin/adminLogin";
      /*   return "/customer/customerLogin";*/
        /* return "/customer/resume";*/
       /* return "/admin/adminView";*/
@@ -28,7 +28,7 @@ public class IndexController {
      /* return "customer/customerRegister";*/
      /*  return "/admin/recruitment";*/
       /* return "/admin/trainingRecord";*/
-     /*return "/employee/employeeRegister";*/
+    /* return "employee/employeeRegister";*/
     }
 
 

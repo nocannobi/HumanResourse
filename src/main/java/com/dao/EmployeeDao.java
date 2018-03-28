@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.po.Employee;
+import com.po.Job;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface EmployeeDao {
     Employee queryEmployeeById(Employee employee);
     List<Employee> queryAllEmployeeByDetail();
     List<Employee> queryAllEmployee();
+    List<Employee> queryAllAdmin();
+    List<Employee> queryEmployeeByJid(Job job);
 }

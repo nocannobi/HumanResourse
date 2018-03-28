@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,9 +25,6 @@ public class EmployeeController {
     private EmployeeDetailService employeeDetailService;
 
     @Autowired
-    private AttendanceService attendanceService;
-
-    @Autowired
     private TrainingRecordService trainingRecordService;
 
     @Autowired
@@ -34,6 +32,11 @@ public class EmployeeController {
 
     @Autowired
     private WageService wageService;
+    @Autowired
+    private JobService jobService;
+
+    @Autowired
+    private DepartmentService departmentService;
 
     @RequestMapping(value = "employeeRegister.view")
     public String registerPage(){
@@ -52,8 +55,20 @@ public class EmployeeController {
 
 
     @RequestMapping(value = "send.view")
-    public String sendMessagePage(){
+    public String sendMessagePage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        List<Employee> employees = employeeService.queryAllAdmin();
+        session.setAttribute("employees",employees);
         return "employee/employeeSendMessage";
+    }
+
+
+    @RequestMapping(value = "department.view")
+    public String departmentPage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        List<Department> departments = departmentService.queryAllDepartment();
+        session.setAttribute("departments",departments);
+        return "employee/department";
     }
 
 
@@ -114,12 +129,9 @@ public class EmployeeController {
     @RequestMapping(value = "employeeLogin.do")
     public String employeeLogin(@ModelAttribute Employee employee,Attendance attendance, HttpSession session, Model model){
         employee = employeeService.queryEmployeeByName(employee);
-        attendance.setEmployeeId(employee.getId());
-        attendanceService.addAttendance(attendance);
-        session.setAttribute("attendance", attendance);
         if(employee != null){
-            session.setAttribute("employee", employee);
-            model.addAttribute("info", "登录成功");
+            session.setAttribute("employee",employee);
+            model.addAttribute("info","登录成功");
             return "employee/employeeView";
         }
         model.addAttribute("info", "登录失败");

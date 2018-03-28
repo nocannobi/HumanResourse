@@ -12,9 +12,6 @@
         <result column="training_is_delete" property="trainingIsDelete"></result>
         <result column="training_create_time" property="trainingCreateTime"></result>
         <result column="training_modified_time" property="trainingModifiedTime"></result>
-<!--
-        <association property="trainingRecord" column="{trainingId = id}" select="com.dao.TrainingDao.queryTrainingRecordByTid"></association>
--->
     </resultMap>
 
     <sql id="selectTraining">
@@ -138,6 +135,20 @@
             <choose>
                 <when test="id != null">
                     AND id = #{id}
+                </when>
+                <otherwise>
+                    AND 1=2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+ <select id="queryTrainingByName" resultMap="trainingMap">
+        <include refid="selectTraining"></include>
+        <where>
+            <choose>
+                <when test="value != null">
+                    AND training_name = #{value}
                 </when>
                 <otherwise>
                     AND 1=2
