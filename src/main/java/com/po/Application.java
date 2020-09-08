@@ -12,45 +12,47 @@ public class Application extends BaseEntity {
     public static final Integer IS_VIEW = 1;
     public static final Integer IS_NOT_VIEW = 0;
 
-    private int id;
-    private int customerId;
-    private int resumeId;
-    private int recruitmentId;
+    private String id;
+    private String customerId;
+    private String resumeId;
+    private String recruitmentId;
     private Integer isInterview;
     private Integer isPassInterview;
     private Integer isView;
-    private Timestamp applicationCreateTime;
-    private Timestamp applicationModifiedTime;
+    private Timestamp createTime;
+    private Timestamp modifiedTime;
+    private String creator;
+    private String modifier;
 
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getResumeId() {
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getResumeId() {
         return resumeId;
     }
 
-    public void setResumeId(int resumeId) {
+    public void setResumeId(String resumeId) {
         this.resumeId = resumeId;
     }
 
-    public int getRecruitmentId() {
+    public String getRecruitmentId() {
         return recruitmentId;
     }
 
-    public void setRecruitmentId(int recruitmentId) {
+    public void setRecruitmentId(String recruitmentId) {
         this.recruitmentId = recruitmentId;
     }
 
@@ -78,34 +80,35 @@ public class Application extends BaseEntity {
         this.isView = isView;
     }
 
-    public Timestamp getApplicationCreateTime() {
-        return applicationCreateTime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setApplicationCreateTime(Timestamp applicationCreateTime) {
-        this.applicationCreateTime = applicationCreateTime;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getApplicationModifiedTime() {
-        return applicationModifiedTime;
+    public Timestamp getModifiedTime() {
+        return modifiedTime;
     }
 
-    public void setApplicationModifiedTime(Timestamp applcationModifiedTime) {
-        this.applicationModifiedTime = applcationModifiedTime;
+    public void setModifiedTime(Timestamp modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
 
-    @Override
-    public String toString() {
-        return "Application{" +
-                "id=" + id +
-                ", customerId=" + customerId +
-                ", resumeId=" + resumeId +
-                ", recruitmentId=" + recruitmentId +
-                ", isInterview=" + isInterview +
-                ", isPassInterview=" + isPassInterview +
-                ", isView=" + isView +
-                ", applicationCreateTime=" + applicationCreateTime +
-                ", applicationModifiedTime=" + applicationModifiedTime +
-                '}';
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
     }
 }

@@ -2,9 +2,11 @@ package com.dao;
 
 import com.po.Employee;
 import com.po.RewardPunishment;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface RewardPunishmentDao {
 
     boolean addRewardPunishment(RewardPunishment rewardPunishment);

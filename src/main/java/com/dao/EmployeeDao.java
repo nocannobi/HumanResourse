@@ -2,9 +2,11 @@ package com.dao;
 
 import com.po.Employee;
 import com.po.Job;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface EmployeeDao {
     boolean addEmployee(Employee employee);
     boolean updateEmployee(Employee employee);

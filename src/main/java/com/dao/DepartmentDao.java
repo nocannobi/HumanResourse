@@ -1,9 +1,11 @@
 package com.dao;
 
 import com.po.Department;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface DepartmentDao {
     boolean addDepartment(Department department);
     boolean updateDepartment(Department department);

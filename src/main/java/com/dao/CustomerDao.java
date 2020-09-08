@@ -1,9 +1,11 @@
 package com.dao;
 
 import com.po.Customer;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface CustomerDao{
     boolean addCustomer(Customer customer);
     boolean updateCustomer(Customer customer);
