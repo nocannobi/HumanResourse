@@ -1,6 +1,4 @@
-package com.po;
-
-import org.omg.PortableInterceptor.INACTIVE;
+package com.entity;
 
 import java.sql.Timestamp;
 

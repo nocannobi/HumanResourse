@@ -1,7 +1,6 @@
 package com.service;
 
-import com.po.Customer;
-import com.po.Resume;
+import com.entity.Resume;
 
 public interface ResumeService {
     boolean addResume(Resume resume);

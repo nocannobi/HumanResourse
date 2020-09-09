@@ -1,9 +1,8 @@
 package com.controller;
 
-import com.po.Department;
-import com.po.Employee;
-import com.po.Job;
-import com.po.Recruitment;
+import com.entity.Department;
+import com.entity.Job;
+import com.entity.Recruitment;
 import com.service.DepartmentService;
 import com.service.JobService;
 import com.service.RecruitmentService;
@@ -31,7 +30,7 @@ public class RecruitmentController {
     @Autowired
     private JobService jobService;
 
-    @RequestMapping(value = "queryRecruitment.view")
+    @RequestMapping(value = "/queryRecruitment.view")
     public String queryRecruitment(@ModelAttribute Recruitment recruitment,HttpSession session,String id){
         recruitment.setId(Integer.valueOf(id));
         System.out.println("查询："+recruitment);
@@ -40,7 +39,7 @@ public class RecruitmentController {
         return "admin/recruitmentDetail";
     }
 
-    @RequestMapping(value = "recruitmentView.view")
+    @RequestMapping(value = "/recruitmentView.view")
     public String recruitmentViewPage(HttpServletRequest request){
         HttpSession session = request.getSession();
         List<Recruitment> recruitments = recruitmentService.queryAllRecruitment();
@@ -52,7 +51,7 @@ public class RecruitmentController {
         return "/admin/recruitmentView";
     }
 
-    @RequestMapping(value = "recruitment.view")
+    @RequestMapping(value = "/recruitment.view")
     public String recruitmentPage(HttpServletRequest request ){
         HttpSession session = request.getSession();
         List<Department> departments = departmentService.queryAllDepartment();
@@ -65,7 +64,7 @@ public class RecruitmentController {
         return "admin/recruitment";
     }
 
-    @RequestMapping(value = "selectJob.do")
+    @RequestMapping(value = "/selectJob.do")
     public @ResponseBody List<Job> queryDepartment(@ModelAttribute Job job, String departmentName, HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         List<Job> jobs = new ArrayList<>();
@@ -82,7 +81,7 @@ public class RecruitmentController {
 
 
 
-    @RequestMapping(value = "recruitment.do")
+    @RequestMapping(value = "/recruitment.do")
     public String addRecruitment(@ModelAttribute Recruitment recruitment, HttpSession session, Model model){
         System.out.println("----"+recruitment);
         boolean addRecruitment = recruitmentService.addRecruitment(recruitment);

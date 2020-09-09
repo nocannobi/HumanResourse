@@ -1,6 +1,6 @@
 package com.service;
 
-import com.po.EmployeeMessage;
+import com.entity.EmployeeMessage;
 
 import java.util.List;
 

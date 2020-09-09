@@ -1,7 +1,6 @@
 package com.service;
 
-import com.po.Training;
-import com.po.TrainingRecord;
+import com.entity.Training;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.dao;
 
-import com.po.CustomerMessage;
+import com.entity.CustomerMessage;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

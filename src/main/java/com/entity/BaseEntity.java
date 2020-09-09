@@ -1,4 +1,4 @@
-package com.po;
+package com.entity;
 
 import java.io.Serializable;
 

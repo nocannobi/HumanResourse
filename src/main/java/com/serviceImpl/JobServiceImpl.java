@@ -1,7 +1,7 @@
 package com.serviceImpl;
 
 import com.dao.JobDao;
-import com.po.Job;
+import com.entity.Job;
 import com.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

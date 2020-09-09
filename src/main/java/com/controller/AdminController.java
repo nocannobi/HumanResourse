@@ -1,9 +1,9 @@
 package com.controller;
 
-import com.po.Attendance;
-import com.po.Customer;
-import com.po.Employee;
-import com.po.EmployeeDetail;
+import com.entity.Attendance;
+import com.entity.Customer;
+import com.entity.Employee;
+import com.entity.EmployeeDetail;
 import com.service.AttendanceService;
 import com.service.CustomerService;
 import com.service.EmployeeDetailService;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,8 +35,9 @@ public class AdminController {
     @Autowired
     private AttendanceService attendanceService;
 
-    @RequestMapping(value = "adminView.view")
+    @RequestMapping(value = "/adminView.view")
     public String adminViewPage(){
+       // return "admin/adminView";
         return "admin/adminView";
     }
 

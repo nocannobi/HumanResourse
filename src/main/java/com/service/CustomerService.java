@@ -1,6 +1,6 @@
 package com.service;
 
-import com.po.Customer;
+import com.entity.Customer;
 
 import java.util.List;
 

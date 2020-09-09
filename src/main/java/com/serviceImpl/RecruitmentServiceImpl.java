@@ -1,7 +1,7 @@
 package com.serviceImpl;
 
 import com.dao.RecruitmentDao;
-import com.po.Recruitment;
+import com.entity.Recruitment;
 import com.service.RecruitmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

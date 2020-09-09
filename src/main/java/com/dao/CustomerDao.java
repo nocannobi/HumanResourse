@@ -1,6 +1,6 @@
 package com.dao;
 
-import com.po.Customer;
+import com.entity.Customer;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.controller;
 
-import com.po.Attendance;
-import com.po.Employee;
+import com.entity.Attendance;
+import com.entity.Employee;
 import com.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +17,12 @@ public class AttendanceController {
     @Autowired
     private AttendanceService attendanceService;
 
-    @RequestMapping(value = "attendance.view")
+    @RequestMapping(value = "/attendance.view")
     public String attendancePage(){
         return "employee/attendance";
     }
 
-    @RequestMapping(value = "punchWorkTime.do")
+    @RequestMapping(value = "/punchWorkTime.do")
     public String addAttendance(@ModelAttribute Attendance attendance, HttpSession session, Model model){
         Object employee = session.getAttribute("employee");
         if(employee instanceof Employee){
@@ -40,7 +40,7 @@ public class AttendanceController {
         return "employee/employeeView";
     }
 
-    @RequestMapping(value = "punchOffTime.do")
+    @RequestMapping(value = "/punchOffTime.do")
     public String updateAttendance(@ModelAttribute Attendance attendance, HttpSession session, Model model){
         Timestamp punchOffTime = new Timestamp(System.currentTimeMillis());
         attendance.setPunchOffTime(punchOffTime);

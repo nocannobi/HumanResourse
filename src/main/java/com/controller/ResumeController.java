@@ -1,7 +1,7 @@
 package com.controller;
 
-import com.po.Customer;
-import com.po.Resume;
+import com.entity.Customer;
+import com.entity.Resume;
 import com.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,13 +18,13 @@ public class ResumeController {
     @Autowired
     private ResumeService resumeService;
 
-    @RequestMapping(value = "resume.view")
+    @RequestMapping(value = "/resume.view")
     public String resumePage(){
         return "customer/resume";
     }
 
 
-    @RequestMapping(value = "resumeView.view")
+    @RequestMapping(value = "/resumeView.view")
     public String resumeViewPage(@ModelAttribute Resume resume, Model model,HttpSession session){
         Object customer = session.getAttribute("customer");
         System.out.println("1:" + customer);
@@ -42,7 +42,7 @@ public class ResumeController {
     }
 
 
-    @RequestMapping(value = "resume.do")
+    @RequestMapping(value = "/resume.do")
     public String addResume(@ModelAttribute Resume resume, String province,String city ,String country, String street,HttpSession session, Model model){
         String address = province + ","+ city +","+ country +","+ street;
         resume.setAddress(address);

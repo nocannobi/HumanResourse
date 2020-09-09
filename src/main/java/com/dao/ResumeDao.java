@@ -1,7 +1,6 @@
 package com.dao;
 
-import com.po.Customer;
-import com.po.Resume;
+import com.entity.Resume;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

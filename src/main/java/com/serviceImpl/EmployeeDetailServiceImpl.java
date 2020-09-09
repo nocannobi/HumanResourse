@@ -1,8 +1,8 @@
 package com.serviceImpl;
 
 import com.dao.EmployeeDetailDao;
-import com.po.Employee;
-import com.po.EmployeeDetail;
+import com.entity.Employee;
+import com.entity.EmployeeDetail;
 import com.service.EmployeeDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

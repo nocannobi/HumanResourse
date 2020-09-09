@@ -1,4 +1,4 @@
-package com.po;
+package com.entity;
 
 import java.sql.Timestamp;
 
@@ -6,27 +6,29 @@ public class RewardPunishment extends BaseEntity {
     public static final Integer IS_REWARD = 0;
     public static final Integer IS_PUNISHMENT = 1;
 
-    private int id;
-    private int employeeId;
+    private String id;
+    private String employeeId;
     private String rewardPunishmentContent;
     private String rewardPunishmentConn;
     private Integer isRewardPunishment;
-    private Timestamp createTime;
-    private Timestamp modifiedTime;
+    private Timestamp createDate;
+    private String creator;
+    private Timestamp modifiedDate;
+    private String modifier;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -54,32 +56,35 @@ public class RewardPunishment extends BaseEntity {
         this.isRewardPunishment = isRewardPunishment;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
+    public Timestamp getCreateDate() {
+        return createDate;
     }
 
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
     }
 
-    public Timestamp getModifiedTime() {
-        return modifiedTime;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setModifiedTime(Timestamp modifiedTime) {
-        this.modifiedTime = modifiedTime;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
-    @Override
-    public String toString() {
-        return "RewardPunishment{" +
-                "id=" + id +
-                ", employeeId=" + employeeId +
-                ", rewardPunishmentContent='" + rewardPunishmentContent + '\'' +
-                ", rewardPunishmentConn='" + rewardPunishmentConn + '\'' +
-                ", isRewardPunishment=" + isRewardPunishment +
-                ", createTime=" + createTime +
-                ", modifiedTime=" + modifiedTime +
-                '}';
+    public Timestamp getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Timestamp modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
     }
 }

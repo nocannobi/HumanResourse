@@ -1,7 +1,7 @@
 package com.serviceImpl;
 
 import com.dao.AdminMessageDao;
-import com.po.AdminMessage;
+import com.entity.AdminMessage;
 import com.service.AdminMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

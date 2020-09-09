@@ -1,6 +1,4 @@
-package com.po;
-
-import org.omg.PortableInterceptor.INACTIVE;
+package com.entity;
 
 import java.sql.Timestamp;
 
@@ -16,29 +14,31 @@ public class Attendance extends BaseEntity{
     public static final Integer EMPLOYEE_IS_LEAVE_EARLY = 3;
     public static final Integer EMPLOYEE_IS_REST = 4;
 
-    private int id;
-    private int employeeId;
+    private String id;
+    private String employeeId;
     private Timestamp workTime;
     private Timestamp offTime;
     private Timestamp punchWorkTime;
     private Timestamp punchOffTime;
     private Integer employeeState;
-    private Timestamp attendanceCreateTime;
-    private Timestamp attendanceModifiedTime;
+    private Timestamp createDate;
+    private String creator;
+    private Timestamp modifiedDate;
+    private String modifier;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -82,34 +82,35 @@ public class Attendance extends BaseEntity{
         this.employeeState = employeeState;
     }
 
-    public Timestamp getAttendanceCreateTime() {
-        return attendanceCreateTime;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setAttendanceCreateTime(Timestamp attendanceCreateTime) {
-        this.attendanceCreateTime = attendanceCreateTime;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
-    public Timestamp getAttendanceModifiedTime() {
-        return attendanceModifiedTime;
+    public Timestamp getCreateDate() {
+        return createDate;
     }
 
-    public void setAttendanceModifiedTime(Timestamp attendanceModifiedTime) {
-        this.attendanceModifiedTime = attendanceModifiedTime;
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
     }
 
-    @Override
-    public String toString() {
-        return "Attendance{" +
-                "id=" + id +
-                ", employeeId=" + employeeId +
-                ", workTime=" + workTime +
-                ", offTime=" + offTime +
-                ", punchWorkTime=" + punchWorkTime +
-                ", punchOffTime=" + punchOffTime +
-                ", employeeState=" + employeeState +
-                ", attendanceCreateTime=" + attendanceCreateTime +
-                ", attendanceModifiedTime=" + attendanceModifiedTime +
-                '}';
+    public Timestamp getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Timestamp modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
     }
 }

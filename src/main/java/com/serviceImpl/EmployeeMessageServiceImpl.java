@@ -1,7 +1,7 @@
 package com.serviceImpl;
 
 import com.dao.EmployeeMessageDao;
-import com.po.EmployeeMessage;
+import com.entity.EmployeeMessage;
 import com.service.EmployeeMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

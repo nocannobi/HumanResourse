@@ -1,9 +1,9 @@
 package com.controller;
 
-import com.po.Department;
-import com.po.Employee;
-import com.po.EmployeeDetail;
-import com.po.Job;
+import com.entity.Department;
+import com.entity.Employee;
+import com.entity.EmployeeDetail;
+import com.entity.Job;
 import com.service.DepartmentService;
 import com.service.EmployeeDetailService;
 import com.service.EmployeeService;
@@ -34,7 +34,7 @@ public class EmployeeDetailController {
     @Autowired
     private JobService jobService;
 
-    @RequestMapping(value = "employeeDetail.view")
+    @RequestMapping(value = "/employeeDetail.view")
     public String employeeDetailPage(HttpServletRequest request){
       HttpSession session = request.getSession();
         List<Employee> employees = employeeService.queryAllEmployeeByDetail();
@@ -51,7 +51,7 @@ public class EmployeeDetailController {
         return "admin/employeeView";
     }
 
-    @RequestMapping(value = "update.do")
+    @RequestMapping(value = "/update.do")
     public String updateDetail(@ModelAttribute EmployeeDetail employeeDetail,Employee employee, Job job, HttpSession session, Model model){
         System.out.println("添加之前："+ employeeDetail);
         boolean addEmployeeDetail = employeeDetailService.addEmployeeDetail(employeeDetail);

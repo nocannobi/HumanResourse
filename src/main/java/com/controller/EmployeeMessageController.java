@@ -1,8 +1,7 @@
 package com.controller;
 
-import com.po.AdminMessage;
-import com.po.Employee;
-import com.po.EmployeeMessage;
+import com.entity.AdminMessage;
+import com.entity.Employee;
 import com.service.AdminMessageService;
 import com.service.EmployeeMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class EmployeeMessageController {
     @Autowired
     private AdminMessageService adminMessageService;
 
-    @RequestMapping(value = "addMessage.do")
+    @RequestMapping(value = "/addMessage.do")
     public String addMessage(@ModelAttribute AdminMessage adminMessage, HttpSession session, Model model){
         Employee employee =(Employee) session.getAttribute("employee");
         int id = employee.getId();

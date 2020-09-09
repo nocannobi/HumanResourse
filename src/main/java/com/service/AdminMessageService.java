@@ -1,6 +1,6 @@
 package com.service;
 
-import com.po.AdminMessage;
+import com.entity.AdminMessage;
 
 import java.util.List;
 

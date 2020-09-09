@@ -1,7 +1,7 @@
 package com.dao;
 
-import com.po.Employee;
-import com.po.Review;
+import com.entity.Employee;
+import com.entity.Review;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

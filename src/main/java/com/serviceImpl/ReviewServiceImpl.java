@@ -1,8 +1,8 @@
 package com.serviceImpl;
 
 import com.dao.ReviewDao;
-import com.po.Employee;
-import com.po.Review;
+import com.entity.Employee;
+import com.entity.Review;
 import com.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

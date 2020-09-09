@@ -1,9 +1,9 @@
 package com.serviceImpl;
 
 import com.dao.TrainingRecordDao;
-import com.po.Employee;
-import com.po.Training;
-import com.po.TrainingRecord;
+import com.entity.Employee;
+import com.entity.Training;
+import com.entity.TrainingRecord;
 import com.service.TrainingRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.po.*;
+import com.entity.*;
 import com.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -38,23 +37,23 @@ public class EmployeeController {
     @Autowired
     private DepartmentService departmentService;
 
-    @RequestMapping(value = "employeeRegister.view")
+    @RequestMapping(value = "/employeeRegister.view")
     public String registerPage(){
         return "employee/employeeRegister";
     }
 
-    @RequestMapping(value = "employeeLogin.view")
+    @RequestMapping(value = "/employeeLogin.view")
     public String loginPage() {
         return "employee/employeeLogin";
     }
 
-    @RequestMapping(value = "employeeView.view")
+    @RequestMapping(value = "/employeeView.view")
     public String viewPage(){
         return "employee/employeeView";
     }
 
 
-    @RequestMapping(value = "send.view")
+    @RequestMapping(value = "/send.view")
     public String sendMessagePage(HttpServletRequest request){
         HttpSession session = request.getSession();
         List<Employee> employees = employeeService.queryAllAdmin();
@@ -63,7 +62,7 @@ public class EmployeeController {
     }
 
 
-    @RequestMapping(value = "department.view")
+    @RequestMapping(value = "/department.view")
     public String departmentPage(HttpServletRequest request){
         HttpSession session = request.getSession();
         List<Department> departments = departmentService.queryAllDepartment();
@@ -72,7 +71,7 @@ public class EmployeeController {
     }
 
 
-    @RequestMapping(value = "detailView.view")
+    @RequestMapping(value = "/detailView.view")
     public String detailViewPage(HttpServletRequest request){
         HttpSession session = request.getSession();
         Employee employee = (Employee) session.getAttribute("employee");
@@ -82,7 +81,7 @@ public class EmployeeController {
 
     }
 
-    @RequestMapping(value = "recordView.view")
+    @RequestMapping(value = "/recordView.view")
     public String recordViewPage(HttpServletRequest request){
         HttpSession session = request.getSession();
         Employee employee = (Employee) session.getAttribute("employee");
@@ -92,7 +91,7 @@ public class EmployeeController {
 
     }
 
-    @RequestMapping(value = "rewardView.view")
+    @RequestMapping(value = "/rewardView.view")
     public String rewardViewPage(HttpServletRequest request){
         HttpSession session = request.getSession();
         Employee employee = (Employee) session.getAttribute("employee");
@@ -102,7 +101,7 @@ public class EmployeeController {
 
     }
 
-    @RequestMapping(value = "wageView.view")
+    @RequestMapping(value = "/wageView.view")
     public String wageViewPage(HttpServletRequest request){
         HttpSession session = request.getSession();
         Employee employee = (Employee) session.getAttribute("employee");
@@ -113,7 +112,7 @@ public class EmployeeController {
     }
 
 
-    @RequestMapping(value = "employeeRegister.do")
+    @RequestMapping(value = "/employeeRegister.do")
     public String employeeRegister(@ModelAttribute Employee employee, HttpSession session, Model model){
         System.out.println("增加之前："+ employee);
         boolean addEmployee = employeeService.addEmployee(employee);
@@ -126,7 +125,7 @@ public class EmployeeController {
         return "employee/employeeRegister";
     }
 
-    @RequestMapping(value = "employeeLogin.do")
+    @RequestMapping(value = "/employeeLogin.do")
     public String employeeLogin(@ModelAttribute Employee employee,Attendance attendance, HttpSession session, Model model){
         employee = employeeService.queryEmployeeByName(employee);
         if(employee != null){
@@ -138,7 +137,7 @@ public class EmployeeController {
         return "employee/employeeLogin";
     }
 
-    @RequestMapping(value = "checkEmployeeName.do")
+    @RequestMapping(value = "/checkEmployeeName.do")
     @ResponseBody
     public String checkEmployee(@ModelAttribute Employee employee){
         employee = employeeService.queryEmployeeByName(employee);

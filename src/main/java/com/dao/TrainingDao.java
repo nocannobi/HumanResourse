@@ -1,6 +1,6 @@
 package com.dao;
 
-import com.po.Training;
+import com.entity.Training;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

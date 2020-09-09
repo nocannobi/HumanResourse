@@ -1,7 +1,7 @@
 package com.service;
 
-import com.po.Employee;
-import com.po.Wage;
+import com.entity.Employee;
+import com.entity.Wage;
 
 import java.util.List;
 

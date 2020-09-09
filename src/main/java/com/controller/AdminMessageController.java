@@ -1,9 +1,8 @@
 package com.controller;
 
-import com.po.Customer;
-import com.po.CustomerMessage;
-import com.po.Employee;
-import com.po.EmployeeMessage;
+import com.entity.CustomerMessage;
+import com.entity.Employee;
+import com.entity.EmployeeMessage;
 import com.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,12 +31,12 @@ public class AdminMessageController {
    private EmployeeService employeeService;
 
 
-   @RequestMapping(value = "addMessage2.view")
+   @RequestMapping(value = "/addMessage2.view")
     public String addMessagePage(){
        return "admin/adminSendMessage";
    }
 
-   @RequestMapping(value = "addMessage1.do")
+   @RequestMapping(value = "/addMessage1.do")
    public String addMessage(@ModelAttribute CustomerMessage customerMessage, EmployeeMessage employeeMessage,String id,String people, HttpSession session, Model model){
        Employee admin = (Employee) session.getAttribute("employee");
        int adminId = admin.getId();

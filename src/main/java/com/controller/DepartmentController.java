@@ -1,8 +1,8 @@
 package com.controller;
 
-import com.po.Department;
-import com.po.Employee;
-import com.po.Job;
+import com.entity.Department;
+import com.entity.Employee;
+import com.entity.Job;
 import com.service.DepartmentService;
 import com.service.EmployeeService;
 import com.service.JobService;
@@ -31,12 +31,12 @@ public class DepartmentController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(value = "department.view")
+    @RequestMapping(value = "/department.view")
     public String departmentPage(){
        return "admin/department";
     }
 
-    @RequestMapping(value = "department.do")
+    @RequestMapping(value = "/department.do")
     public String addDepartment(@ModelAttribute Department department,Job job, String departmentName, HttpSession session, Model model) {
         Department department2 = departmentService.queryDepartmentByName(departmentName);
         if (department2 != null) {
@@ -82,7 +82,7 @@ public class DepartmentController {
         return null;
     }
 
-    @RequestMapping(value = "departmentDetail.view")
+    @RequestMapping(value = "/departmentDetail.view")
     public String departmentDetailPage(HttpServletRequest request){
         HttpSession session = request.getSession();
         List<Department> departments = departmentService.queryAllDepartment();

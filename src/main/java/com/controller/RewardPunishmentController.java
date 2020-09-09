@@ -1,7 +1,7 @@
 package com.controller;
 
-import com.po.Employee;
-import com.po.RewardPunishment;
+import com.entity.Employee;
+import com.entity.RewardPunishment;
 import com.service.EmployeeService;
 import com.service.RewardPunishmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class RewardPunishmentController {
   @Autowired
   private EmployeeService employeeService;
 
-  @RequestMapping(value = "reward.view")
+  @RequestMapping(value = "/reward.view")
   public String rewardPage(HttpServletRequest request){
       HttpSession session = request.getSession();
       List<Employee> employees = employeeService.queryAllEmployee();
@@ -33,7 +33,7 @@ public class RewardPunishmentController {
       return "admin/rewardPunishment";
   }
 
-  @RequestMapping(value = "rewardView.view")
+  @RequestMapping(value = "/rewardView.view")
   public String rewardViewPage(HttpServletRequest request){
       HttpSession session = request.getSession();
       List<RewardPunishment> rewardPunishments = rewardPunishmentService.queryAllRewardPunishment();
@@ -41,7 +41,7 @@ public class RewardPunishmentController {
       return "admin/rewardPunishmentView";
   }
 
-  @RequestMapping(value = "addReward.do")
+  @RequestMapping(value = "/addReward.do")
   public String addReward(@ModelAttribute RewardPunishment rewardPunishment,HttpSession session, Model model){
       System.out.println("增加之前："+ rewardPunishment);
       boolean addRewardPunishment = rewardPunishmentService.addRewardPunishment(rewardPunishment);

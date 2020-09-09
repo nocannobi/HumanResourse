@@ -1,7 +1,7 @@
 package com.service;
 
-import com.po.Employee;
-import com.po.RewardPunishment;
+import com.entity.Employee;
+import com.entity.RewardPunishment;
 
 import java.util.List;
 

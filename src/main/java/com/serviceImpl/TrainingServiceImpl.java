@@ -1,8 +1,7 @@
 package com.serviceImpl;
 
 import com.dao.TrainingDao;
-import com.po.Training;
-import com.po.TrainingRecord;
+import com.entity.Training;
 import com.service.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

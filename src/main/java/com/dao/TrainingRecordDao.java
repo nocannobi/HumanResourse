@@ -1,8 +1,8 @@
 package com.dao;
 
-import com.po.Employee;
-import com.po.Training;
-import com.po.TrainingRecord;
+import com.entity.Employee;
+import com.entity.Training;
+import com.entity.TrainingRecord;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

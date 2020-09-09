@@ -1,8 +1,8 @@
 package com.serviceImpl;
 
 import com.dao.ApplicationDao;
-import com.po.Application;
-import com.po.Customer;
+import com.entity.Application;
+import com.entity.Customer;
 import com.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -1,8 +1,7 @@
 package com.serviceImpl;
 
 import com.dao.ResumeDao;
-import com.po.Customer;
-import com.po.Resume;
+import com.entity.Resume;
 import com.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

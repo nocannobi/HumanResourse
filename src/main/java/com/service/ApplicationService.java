@@ -1,7 +1,7 @@
 package com.service;
 
-import com.po.Application;
-import com.po.Customer;
+import com.entity.Application;
+import com.entity.Customer;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.serviceImpl;
 
 import com.dao.RewardPunishmentDao;
-import com.po.Employee;
-import com.po.RewardPunishment;
+import com.entity.Employee;
+import com.entity.RewardPunishment;
 import com.service.RewardPunishmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

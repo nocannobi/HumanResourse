@@ -1,6 +1,6 @@
 package com.service;
 
-import com.po.Department;
+import com.entity.Department;
 
 import java.util.List;
 

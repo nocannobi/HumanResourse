@@ -1,8 +1,8 @@
 package com.serviceImpl;
 
 import com.dao.AttendanceDao;
-import com.po.Attendance;
-import com.po.Employee;
+import com.entity.Attendance;
+import com.entity.Employee;
 import com.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

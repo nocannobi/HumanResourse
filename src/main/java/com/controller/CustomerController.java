@@ -1,9 +1,9 @@
 package com.controller;
 
 
-import com.po.Customer;
-import com.po.Recruitment;
-import com.po.Resume;
+import com.entity.Customer;
+import com.entity.Recruitment;
+import com.entity.Resume;
 import com.service.CustomerService;
 import com.service.RecruitmentService;
 import com.service.ResumeService;
@@ -32,17 +32,17 @@ public class CustomerController {
     @Autowired
     private RecruitmentService recruitmentService;
 
-    @RequestMapping(value = "customerRegister.view")
+    @RequestMapping(value = "/customerRegister.view")
     public String register(){
         return "customer/customerRegister";
     }
 
-    @RequestMapping(value = "customerLogin.view")
+    @RequestMapping(value = "/customerLogin.view")
     public String login(){
         return "customer/customerLogin";
     }
 
-    @RequestMapping(value = "customerView.view")
+    @RequestMapping(value = "/customerView.view")
     public String viewPage(@ModelAttribute Customer customer,HttpServletRequest request, HttpServletResponse response, HttpSession session , Model model){
 
         Cookie[] cookies = request.getCookies();
@@ -72,7 +72,7 @@ public class CustomerController {
         return "customer/customerView";
     }
 
-    @RequestMapping(value = "customerLogin.do")
+    @RequestMapping(value = "/customerLogin.do")
     public String customerLogin(HttpServletResponse response, String isRemember,Customer customer, HttpSession session , Model model){
         customer = customerService.queryCustomerByCustomer(customer);
         if (customer == null){
@@ -102,7 +102,7 @@ public class CustomerController {
         }
 
 
-    @RequestMapping(value = "customerRegister.do")
+    @RequestMapping(value = "/customerRegister.do")
     public String customerRegister(@ModelAttribute Customer customer, Resume resume, HttpSession session, Model model){
         if(customer == null){
             model.addAttribute("info","注册失败");
@@ -125,7 +125,7 @@ public class CustomerController {
         return "customer/customerRegister";
     }
 
-    @RequestMapping(value = "queryRecruitment.view")
+    @RequestMapping(value = "/queryRecruitment.view")
     public String queryRecruitment(HttpServletRequest request){
         HttpSession session = request.getSession();
         List<Recruitment> recruitments = recruitmentService.queryAllRecruitment();
@@ -133,12 +133,7 @@ public class CustomerController {
         return "customer/recruitment";
     }
 
-
-
-
-
-
-    @RequestMapping(value = "checkName.do")
+    @RequestMapping(value = "/checkName.do")
     @ResponseBody
     public String customerName(@ModelAttribute Customer customer){
         customer = customerService.queryCustomerByName(customer);
@@ -149,7 +144,7 @@ public class CustomerController {
         }
     }
 
-    @RequestMapping(value = "checkPhone.do")
+    @RequestMapping(value = "/checkPhone.do")
     @ResponseBody
     public String customerPhone(@ModelAttribute Customer customer){
         customer = customerService.queryCustomerByPhone(customer);
@@ -160,7 +155,7 @@ public class CustomerController {
         }
     }
 
-    @RequestMapping(value = "checkEmail.do")
+    @RequestMapping(value = "/checkEmail.do")
     @ResponseBody
     public String customerEmail(@ModelAttribute Customer customer){
         customer = customerService.queryCustomerByEmail(customer);

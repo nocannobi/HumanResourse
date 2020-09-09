@@ -1,6 +1,6 @@
 package com.service;
 
-import com.po.Recruitment;
+import com.entity.Recruitment;
 
 import java.util.List;
 

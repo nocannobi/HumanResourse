@@ -1,4 +1,4 @@
-package com.po;
+package com.entity;
 
 import java.sql.Timestamp;
 
@@ -6,21 +6,23 @@ public class Customer extends BaseEntity {
     public static final Integer CUSTOMER_IS_NORMAL = 1;
     public static final Integer CUSTOMER_IS_DELETED = 0;
 
-    private int id;
+    private String id;
     private String customerName;
     private String customerPassword;
     private String customerEmail;
     private String customerPhone;
     private Integer customerIsNormal;
     private Timestamp customerLoginTime;
-    private Timestamp customerCreateTime;
-    private Timestamp customerModifiedTime;
+    private Timestamp createDate;
+    private String creator;
+    private Timestamp modifiedDate;
+    private String modifier;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -40,7 +42,6 @@ public class Customer extends BaseEntity {
         this.customerPassword = customerPassword;
     }
 
-
     public String getCustomerEmail() {
         return customerEmail;
     }
@@ -57,30 +58,6 @@ public class Customer extends BaseEntity {
         this.customerPhone = customerPhone;
     }
 
-    public Timestamp getCustomerLoginTime() {
-        return customerLoginTime;
-    }
-
-    public void setCustomerLoginTime(Timestamp customerLoginTime) {
-        this.customerLoginTime = customerLoginTime;
-    }
-
-    public Timestamp getCustomerCreateTime() {
-        return customerCreateTime;
-    }
-
-    public void setCustomerCreateTime(Timestamp customerCreateTime) {
-        this.customerCreateTime = customerCreateTime;
-    }
-
-    public Timestamp getCustomerModifiedTime() {
-        return customerModifiedTime;
-    }
-
-    public void setCustomerModifiedTime(Timestamp customerModifiedTime) {
-        this.customerModifiedTime = customerModifiedTime;
-    }
-
     public Integer getCustomerIsNormal() {
         return customerIsNormal;
     }
@@ -89,18 +66,43 @@ public class Customer extends BaseEntity {
         this.customerIsNormal = customerIsNormal;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", customerName='" + customerName + '\'' +
-                ", customerPassword='" + customerPassword + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", customerPhone='" + customerPhone + '\'' +
-                ", customerIsNormal=" + customerIsNormal +
-                ", customerLoginTime=" + customerLoginTime +
-                ", customerCreateTime=" + customerCreateTime +
-                ", customerModifiedTime=" + customerModifiedTime +
-                '}';
+    public Timestamp getCustomerLoginTime() {
+        return customerLoginTime;
+    }
+
+    public void setCustomerLoginTime(Timestamp customerLoginTime) {
+        this.customerLoginTime = customerLoginTime;
+    }
+
+    public Timestamp getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public Timestamp getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Timestamp modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
     }
 }
